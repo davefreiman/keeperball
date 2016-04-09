@@ -6,9 +6,10 @@ class User
   field :email, type: String
   field :password_digest, type: String
   field :yahoo_oauth_token, type: String
-  field :yahoo_oauth_secret, type: String
+  field :yahoo_oauth_token_secret, type: String
   field :yahoo_access_token, type: String
   field :yahoo_access_token_secret, type: String
+  field :yahoo_access_token_expiry, type: Time
   has_secure_password
 
   validates :email, {
@@ -20,12 +21,16 @@ class User
   before_save :encrypt_tokens
   after_find :decrypt_tokens
 
+  def has_expired_access_token?
+    Time.now > yahoo_access_token_expiry
+  end
+
   private
 
   def encrypted_fields
     [
       :yahoo_oauth_token,
-      :yahoo_oauth_secret,
+      :yahoo_oauth_token_secret,
       :yahoo_access_token,
       :yahoo_access_token_secret
     ]

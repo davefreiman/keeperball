@@ -23,7 +23,8 @@ module Keeperball
       end
 
       def consumer
-        @consumer ||= OAuth::Consumer.new(client_id, client_secret, consumer_params)
+        @consumer ||=
+          OAuth::Consumer.new(client_id, client_secret, consumer_params)
       end
 
       def consumer_params

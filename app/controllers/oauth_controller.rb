@@ -3,16 +3,18 @@ class OauthController < ApplicationController
 
   def authorize
     auth = Keeperball::YahooApi::Authorization.new(oauth_params)
-    session[:token] = auth.request_token.token
-    session[:token_secret] = auth.request_token.secret
+    current_user.update_attributes(
+      yahoo_oauth_token: auth.request_token.token,
+      yahoo_oauth_token_secret: auth.request_token.secret
+    )
     redirect_to auth.request_token.authorize_url
   end
 
   def callback
     auth = Keeperball::YahooApi::Authorization.new(oauth_params)
     hash = {
-      oauth_token: session[:token],
-      oauth_token_secret: session[:token_secret]
+      oauth_token: current_user.yahoo_oauth_token,
+      oauth_token_secret: current_user.yahoo_oauth_token_secret
     }
     token = OAuth::RequestToken.from_hash(auth.consumer, hash)
 
@@ -20,7 +22,8 @@ class OauthController < ApplicationController
       access = token.get_access_token(oauth_params)
       current_user.update_attributes(
         yahoo_access_token: access.token,
-        yahoo_access_token_secret: access.secret
+        yahoo_access_token_secret: access.secret,
+        yahoo_access_token_expiry: Time.now + 3600
       )
     rescue Exception => e
       flash.now[:error] = e.message
