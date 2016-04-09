@@ -23,8 +23,7 @@ class OauthController < ApplicationController
         yahoo_access_token_secret: access.secret
       )
     rescue Exception => e
-      flash[:error] = 'unable to process token'
-      flash[:error] = e.message
+      flash.now[:error] = e.message
     end
 
     redirect_to root_path, notice: 'authorized'
