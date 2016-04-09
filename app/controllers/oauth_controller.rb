@@ -1,4 +1,5 @@
 class OauthController < ApplicationController
+  before_filter :require_login
 
   def authorize
     auth = Keeperball::YahooApi::Authorization.new(oauth_params)
@@ -15,16 +16,18 @@ class OauthController < ApplicationController
     }
     token = OAuth::RequestToken.from_hash(auth.consumer, hash)
 
-    # @todo save token and use for querying api
     begin
       access = token.get_access_token(oauth_params)
-      session[:access_token] = access.token
-      session[:access_token_secret] = access.secret
-    rescue
+      current_user.update_attributes(
+        yahoo_access_token: access.token,
+        yahoo_access_token_secret: access.secret
+      )
+    rescue Exception => e
       flash[:error] = 'unable to process token'
+      flash[:error] = e.message
     end
 
-    redirect_to root_path
+    redirect_to root_path, notice: 'authorized'
   end
 
   private
