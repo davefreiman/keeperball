@@ -16,5 +16,5 @@
 !/log/.keep
 /tmp
 
-/config/secrets.yml
 .byebug_history
+.env_vars
