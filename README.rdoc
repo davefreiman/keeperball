@@ -1,0 +1,3 @@
+== KeeperBall
+
+This app is supposed to make my life easier. Hooks into yahoo fantasy league, outputs salary data and business logic to google spreadsheet
