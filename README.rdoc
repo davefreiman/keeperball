@@ -1,3 +1,4 @@
 == KeeperBall
+[![Build Status](https://travis-ci.org/dfry22/keeperball.svg?branch=master)](https://travis-ci.org/dfry22/keeperball)
 
 This app is supposed to make my life easier. Hooks into yahoo fantasy league, outputs salary data and business logic to google spreadsheet
