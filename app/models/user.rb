@@ -10,6 +10,7 @@ class User
   field :yahoo_access_token, type: String
   field :yahoo_access_token_secret, type: String
   field :yahoo_access_token_expiry, type: Time
+  field :yahoo_oauth_session_identifier, type: String
   has_secure_password
 
   validates :email, {
@@ -32,7 +33,8 @@ class User
       :yahoo_oauth_token,
       :yahoo_oauth_token_secret,
       :yahoo_access_token,
-      :yahoo_access_token_secret
+      :yahoo_access_token_secret,
+      :yahoo_oauth_session_identifier
     ]
   end
 
