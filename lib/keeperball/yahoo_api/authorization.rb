@@ -21,6 +21,7 @@ module Keeperball
       end
 
       def refresh_token
+        return unless current_user.has_expired_access_token?
         request_token =
           OAuth::RequestToken.from_hash(consumer, user_access_tokens)
         request_token.get_access_token
@@ -76,7 +77,7 @@ module Keeperball
       end
 
       def session_id
-        { 'oauth_session_handle' => current_user.yahoo_oauth_session_identifier }
+        { oauth_session_handle: current_user.yahoo_oauth_session_identifier }
       end
     end
   end
