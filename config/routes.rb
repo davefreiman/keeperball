@@ -9,6 +9,10 @@ Rails.application.routes.draw do
   get 'oauth/authorize' => 'oauth#authorize', as: :oauth_authorize
   get 'oauth/callback' => 'oauth#callback', as: :oauth_callback
 
+  get 'login' => 'sessions#new', as: :login
+  delete 'logout' => 'sessions#destroy', as: :logout
+  resources :sessions, :only => [:create]
+
   namespace :yahoo do
     get 'request/transactions' => 'request#transactions', as: :refresh_transactions
   end
