@@ -7,8 +7,6 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in?
 
   def current_user
-    return @current_user if defined?(@current_user)
-
     @current_user ||=
       User.find(cookies.signed[:user_id]) if cookies.signed[:user_id].present?
   end

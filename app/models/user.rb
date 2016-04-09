@@ -5,8 +5,12 @@ class User
 
   field :email, type: String
   field :password_digest, type: String
+  field :yahoo_oauth_token, type: String
+  field :yahoo_oauth_token_secret, type: String
   field :yahoo_access_token, type: String
   field :yahoo_access_token_secret, type: String
+  field :yahoo_access_token_expiry, type: Time
+  field :yahoo_oauth_session_identifier, type: String
   has_secure_password
 
   validates :email, {
@@ -18,27 +22,35 @@ class User
   before_save :encrypt_tokens
   after_find :decrypt_tokens
 
+  def has_expired_access_token?
+    Time.now > yahoo_access_token_expiry
+  end
+
   private
 
-  def encrypt_tokens
-    if yahoo_access_token.present?
-      self.yahoo_access_token = crypt.encrypt_and_sign(yahoo_access_token)
-    end
-    if yahoo_access_token_secret.present?
-      self.yahoo_access_token_secret =
-        crypt.encrypt_and_sign(yahoo_access_token_secret)
-    end
+  def encrypted_fields
+    [
+      :yahoo_oauth_token,
+      :yahoo_oauth_token_secret,
+      :yahoo_access_token,
+      :yahoo_access_token_secret,
+      :yahoo_oauth_session_identifier
+    ]
+  end
 
+  def encrypt_tokens
+    encrypted_fields.each do |field|
+      if self.send(field).present?
+        self.send("#{field}=", crypt.encrypt_and_sign(read_attribute(field)))
+      end
+    end
   end
 
   def decrypt_tokens
-    if yahoo_access_token.present?
-      self.yahoo_access_token = crypt.decrypt_and_verify(yahoo_access_token)
-    end
-
-    if yahoo_access_token_secret.present?
-      self.yahoo_access_token_secret =
-        crypt.decrypt_and_verify(yahoo_access_token_secret)
+    encrypted_fields.each do |field|
+      if self.send(field).present?
+        self.send("#{field}=", crypt.decrypt_and_verify(read_attribute(field)))
+      end
     end
   end
 

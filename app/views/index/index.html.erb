@@ -1,7 +1,9 @@
 <h1>Keeperball</h1>
 
-<% if !session[:access_token].present? %>
-  <%= link_to 'authorize', oauth_authorize_path %>
+<% if current_user.blank? %>
+    <%= link_to 'login', login_path %>
+<% elsif current_user.yahoo_access_token.present? %>
+    <%= link_to 'refresh transactions', yahoo_refresh_transactions_path %>
 <% else %>
-  <%= link_to 'refresh transactions', yahoo_refresh_transactions_path %>
+    <%= link_to 'authorize', oauth_authorize_path %>
 <% end %>
