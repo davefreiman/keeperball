@@ -1,4 +1,6 @@
 language: ruby
+env:
+  RAILS_ENV=test
 services:
   - mongodb
 before_script:
