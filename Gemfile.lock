@@ -180,6 +180,7 @@ DEPENDENCIES
   jbuilder (~> 2.0)
   jquery-rails
   mongoid (~> 5.1.0)
+  nokogiri
   oauth
   rails (= 4.2.6)
   rspec-rails
