@@ -17,7 +17,7 @@ module Keeperball
 
       def access_token
         request_token = OAuth::RequestToken.from_hash(consumer, user_tokens)
-        @access_token = request_token.get_access_token
+        request_token.get_access_token
       end
 
       def refresh_token
