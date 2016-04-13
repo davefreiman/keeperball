@@ -11,6 +11,9 @@ class User
   field :yahoo_access_token_secret, type: String
   field :yahoo_access_token_expiry, type: Time
   field :yahoo_oauth_session_identifier, type: String
+
+  has_one :roster, class_name: 'Keeperball::Roster'
+
   has_secure_password
 
   validates :email, {
