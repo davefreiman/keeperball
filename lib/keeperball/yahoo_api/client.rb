@@ -18,7 +18,8 @@ module Keeperball
       private
 
       def build_request
-        builder_class = "Keeperball::YahooApi::Builder::#{type.classify}".constantize
+        builder_class =
+          "Keeperball::YahooApi::Builder::#{type.classify}".constantize
         self.request = builder_class.new.build
       end
 

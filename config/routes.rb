@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   namespace :yahoo do
     get 'request/transactions' => 'request#transactions', as: :refresh_transactions
+    get 'request/rosters' => 'request#rosters', as: :import_rosters
   end
 
   # Example of regular route:

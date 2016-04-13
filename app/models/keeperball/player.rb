@@ -12,7 +12,7 @@ module Keeperball
 
     belongs_to :roster, inverse_of: :players, class_name: 'Keeperball::Roster'
 
-    validates :player_key, presence: true
+    validates :player_key, presence: true, uniqueness: true
     validates :name, presence: true
     validates :position, presence: true
     validates :salary, presence: true, numericality: true
@@ -20,7 +20,7 @@ module Keeperball
     validates :contract_type, presence: true
     validate :contract_type_valid
 
-    attr_accessor allowed_contract_types
+    cattr_accessor :allowed_contract_types
     self.allowed_contract_types = %w(none entry extension franchise)
 
     private

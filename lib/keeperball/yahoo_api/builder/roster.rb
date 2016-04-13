@@ -1,11 +1,11 @@
 module Keeperball
   module YahooApi
     module Builder
-      class Transaction < Base
+      class Roster < Base
         attr_accessor :path
 
         def build
-          api_url + 'league/' + league_id + '/transactions'
+          api_url + 'league/' + league_id + '/teams'
         end
       end
     end

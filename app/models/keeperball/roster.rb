@@ -9,7 +9,7 @@ module Keeperball
     belongs_to :user, inverse_of: :rosters
     has_many :players, class_name: 'Keeperball::Player'
 
-    validates :team_key, presence: true
+    validates :team_key, presence: true, uniqueness: true
     validates :name, presence: true
   end
 end

@@ -20,7 +20,7 @@ module Keeperball
       validate :player_or_cap
       validate :detail_type_valid
 
-      attr_accessor allowed_detail_types
+      cattr_accessor :allowed_detail_types
       self.allowed_detail_types = %w(waiver free_agent trade)
 
       private
@@ -30,7 +30,7 @@ module Keeperball
       end
 
       def player_or_cap
-        player.present? || cap.present?
+        player_key.present? || cap.present?
       end
     end
   end

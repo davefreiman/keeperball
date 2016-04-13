@@ -10,10 +10,10 @@ module Keeperball
     embeds_many :transaction_details,
       class_name: 'Keeperball::Transaction::Detail'
 
-    validates :transaction_key, presence: true
+    validates :transaction_key, presence: true, uniqueness: true
     validate :move_type_valid
 
-    attr_accessor allowed_move_types
+    cattr_accessor :allowed_move_types
     self.allowed_move_types = %w(add trade)
 
     private

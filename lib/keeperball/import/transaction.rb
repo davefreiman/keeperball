@@ -1,12 +1,6 @@
 module Keeperball
   module Import
-    class Transactions
-      attr_reader :document
-
-      def initialize(document)
-        @document = document
-      end
-
+    class Transaction < Base
       def ingest
         transactions = document.css('transactions transaction')
         transactions.each do |transaction|
