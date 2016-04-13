@@ -26,7 +26,8 @@ module Keeperball
     private
 
     def contract_type_valid
-      self.allowed_contract_types.include?(contract_type)
+      return true if self.allowed_contract_types.include?(contract_type)
+      errors[:contract_type].push('invalid')
     end
   end
 end

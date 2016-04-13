@@ -7,7 +7,7 @@ module Keeperball
     field :transaction_key, type: String
     field :completed_at, type: DateTime
 
-    embeds_many :transaction_details,
+    embeds_many :details,
       class_name: 'Keeperball::Transaction::Detail'
 
     validates :transaction_key, presence: true, uniqueness: true
@@ -19,7 +19,8 @@ module Keeperball
     private
 
     def move_type_valid
-      self.allowed_move_types.include?(move_type)
+      return true if self.allowed_move_types.include?(move_type)
+      errors[:move_type].push('invalid')
     end
   end
 end
