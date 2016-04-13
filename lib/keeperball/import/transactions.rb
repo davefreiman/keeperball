@@ -8,7 +8,7 @@ module Keeperball
       end
 
       def ingest
-        transactions = document.xpath('//transactions//trasnaction')
+        transactions = document.css('transactions transaction')
         transactions.each do |transaction|
           import(transaction)
         end
@@ -19,7 +19,7 @@ module Keeperball
       private
 
       def import(transaction)
-        
+
       end
     end
   end
