@@ -29,6 +29,7 @@ gem 'mongoid', '~> 5.1.0'
 gem 'bcrypt'
 gem 'rspec-rails'
 gem 'nokogiri'
+gem 'tailor'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
