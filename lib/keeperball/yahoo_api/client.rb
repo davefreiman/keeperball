@@ -25,8 +25,8 @@ module Keeperball
 
       def importer
         @importer ||=
-          "Keeperball::Import::#{type.classify}"
-            .constantize.new(response)
+          "Keeperball::Import::#{type.classify}".
+            constantize.new(response)
       end
 
       def build_request
