@@ -57,8 +57,6 @@ module Keeperball
 
           keeper_transaction.save
         end
-
-        p Keeperball::Transaction.count
       end
 
       def translate_move_type(type)
