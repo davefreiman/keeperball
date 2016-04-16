@@ -20,7 +20,7 @@ module Keeperball
     validate :detail_type_valid
 
     cattr_accessor :allowed_detail_types
-    self.allowed_detail_types = %w(waiver free_agent trade)
+    self.allowed_detail_types = %w(drop add trade)
 
     private
 
