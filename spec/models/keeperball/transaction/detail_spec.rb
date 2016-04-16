@@ -9,9 +9,9 @@ module Keeperball
           move_type: 'add'
         )
         detail = transaction.details.new(
-          detail_type: 'add',
+          detail_type: 'drop',
           source: 'Shisland',
-          destination: 'Waivers'
+          destination: 'waivers'
         )
 
         expect(transaction.save).to be false
@@ -20,7 +20,7 @@ module Keeperball
         detail.player_key = 'dummykey'
         expect(transaction.save).to be false
 
-        detail.detail_type = 'free_agent'
+        detail.detail_type = 'drop'
         expect(transaction.save).to be true
       end
     end
