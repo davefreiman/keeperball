@@ -5,11 +5,29 @@ module Yahoo
     before_filter :access_token
 
     def transactions
-      adapter = Keeperball::YahooApi::Adapter::League.new(access_token)
-      @response = adapter.do_request
+      run_import('transactions')
+    end
+
+    def rosters
+      run_import('rosters')
+    end
+
+    def players
+      run_import('players')
     end
 
     private
+
+    def run_import(type)
+      client_class = "Keeperball::YahooApi::Client::#{type.classify}"
+      client = client_class.constantize.new(access_token, type)
+
+      if client.execute
+        redirect_to root_path, notice: 'Refreshed ' + type
+      else
+        redirect_to root_path, notice: 'Failed miserably to import ' + type
+      end
+    end
 
     def access_token
       auth = Keeperball::YahooApi::Authorization.new({}, current_user)
