@@ -8,7 +8,7 @@ module Keeperball
           player_key: 'validkey',
           contract_type: 'invalid',
           name: 'Carmelo Anthony',
-          position: %w(SF PF),
+          positions: %w(SF PF),
           salary: 35,
           expiry: 2018
         )

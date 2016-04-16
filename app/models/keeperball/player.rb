@@ -5,16 +5,16 @@ module Keeperball
 
     field :name, type: String
     field :player_key, type: String
-    field :position, type: Array
-    field :salary, type: Integer
-    field :expiry, type: Integer
-    field :contract_type, type: String
+    field :positions, type: Array
+    field :salary, type: Integer, default: 0
+    field :expiry, type: Integer, default: 0
+    field :contract_type, type: String, default: 'none'
 
     belongs_to :roster, inverse_of: :players, class_name: 'Keeperball::Roster'
 
     validates :player_key, presence: true, uniqueness: true
     validates :name, presence: true
-    validates :position, presence: true
+    validates :positions, presence: true
     validates :salary, presence: true, numericality: true
     validates :expiry, presence: true, numericality: true
     validates :contract_type, presence: true

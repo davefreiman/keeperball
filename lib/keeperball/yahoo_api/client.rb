@@ -13,9 +13,21 @@ module Keeperball
         build_request
         do_request
         parse_response
+        ingest_response
       end
 
       private
+
+      def ingest_response
+        importer.document = response
+        importer.ingest
+      end
+
+      def importer
+        @importer ||=
+          "Keeperball::Import::#{type.classify}"
+            .constantize.new(response)
+      end
 
       def build_request
         builder_class =

@@ -1,7 +1,7 @@
 module Keeperball
   module Import
     class Base
-      attr_reader :document
+      attr_accessor :document
 
       def initialize(document)
         @document = document

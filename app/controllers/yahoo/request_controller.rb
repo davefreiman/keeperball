@@ -12,15 +12,17 @@ module Yahoo
       run_import('rosters')
     end
 
+    def players
+      run_import('players')
+    end
+
     private
 
     def run_import(type)
-      client = Keeperball::YahooApi::Client.new(access_token, type)
-      client.execute
-      receiver_class = "Keeperball::Import::#{type.classify}"
-      receiver = receiver_class.constantize.new(client.response)
+      client_class = "Keeperball::YahooApi::Client::#{type.classify}"
+      client = client_class.constantize.new(access_token, type)
 
-      if receiver.ingest
+      if client.execute
         redirect_to root_path, notice: 'Refreshed ' + type
       else
         redirect_to root_path, notice: 'Failed miserably to import ' + type

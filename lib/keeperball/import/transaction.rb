@@ -13,7 +13,6 @@ module Keeperball
       private
 
       def import(transaction)
-
       end
     end
   end
