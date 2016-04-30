@@ -16,6 +16,6 @@ class ApplicationController < ActionController::Base
   end
 
   def require_login
-    redirect_to root_path, error: 'Login Required' unless current_user
+    redirect_to root_path, notice: 'Login Required' unless current_user
   end
 end

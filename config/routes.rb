@@ -19,6 +19,12 @@ Rails.application.routes.draw do
     get 'request/players' => 'request#players', as: :import_players
   end
 
+  namespace :google do
+    get 'request/read' => 'request#read', as: :read_spreadsheet
+    get 'oauth/callback' => 'oauth#callback', as: :oauth_callback
+    get 'oauth/authorize' => 'oauth#authorize', as: :oauth_authorize
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

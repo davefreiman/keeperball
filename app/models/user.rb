@@ -11,6 +11,8 @@ class User
   field :yahoo_access_token_secret, type: String
   field :yahoo_access_token_expiry, type: Time
   field :yahoo_oauth_session_identifier, type: String
+  field :google_access_token, type: String
+  field :google_access_token_expiry, type: Time
 
   has_one :roster, class_name: 'Keeperball::Roster'
 
@@ -29,6 +31,10 @@ class User
     Time.now > yahoo_access_token_expiry
   end
 
+  def has_expired_google_token?
+    Time.now > google_access_token_expiry
+  end
+
   private
 
   def encrypted_fields
@@ -37,7 +43,8 @@ class User
       :yahoo_oauth_token_secret,
       :yahoo_access_token,
       :yahoo_access_token_secret,
-      :yahoo_oauth_session_identifier
+      :yahoo_oauth_session_identifier,
+      :google_access_token
     ]
   end
 
