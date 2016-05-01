@@ -1,11 +1,10 @@
 module Keeperball
   module GoogleApi
     class WebClient
-      attr_accessor :refresh_token, :scope
-
       def initialize
         @client_id = Keeperball::Application.config.google_auth[:client_id]
-        @client_secret = Keeperball::Application.config.google_auth[:client_secret]
+        @client_secret =
+          Keeperball::Application.config.google_auth[:client_secret]
       end
 
       def authorize_url
@@ -15,7 +14,7 @@ module Keeperball
         auth.client_secret = client_secret
         auth.scope =
           'https://www.googleapis.com/auth/drive ' +
-            'https://spreadsheets.google.com/feeds/'
+          'https://spreadsheets.google.com/feeds/'
         auth.redirect_uri = redirect_uri
         auth.authorization_uri
       end
@@ -27,7 +26,7 @@ module Keeperball
         auth.client_secret = client_secret
         auth.scope =
           'https://www.googleapis.com/auth/drive ' +
-            'https://spreadsheets.google.com/feeds/'
+          'https://spreadsheets.google.com/feeds/'
         auth.redirect_uri = redirect_uri
         auth.code = code
         auth.fetch_access_token!
@@ -41,7 +40,7 @@ module Keeperball
         auth.client_secret = client_secret
         auth.scope =
           'https://www.googleapis.com/auth/drive ' +
-            'https://spreadsheets.google.com/feeds/'
+          'https://spreadsheets.google.com/feeds/'
         auth.redirect_uri = redirect_uri
         auth.refresh_token = token
         auth.fetch_access_token!
@@ -50,8 +49,9 @@ module Keeperball
 
       def current_session(user)
         return false unless user.google_api_token.present?
+        token = user.google_api_token
+        return refresh_token(token) if user.has_expired_google_token?
 
-        return refresh_token(user.google_api_token) if user.has_expired_google_token?
         GoogleDrive::Session.new(user.google_api_token)
       end
 
