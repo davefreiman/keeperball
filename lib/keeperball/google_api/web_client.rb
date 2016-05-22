@@ -43,16 +43,17 @@ module Keeperball
           'https://spreadsheets.google.com/feeds/'
         auth.redirect_uri = redirect_uri
         auth.refresh_token = token
-        auth.fetch_access_token!
+        auth.refresh!
         GoogleDrive.login_with_oauth(auth.access_token)
       end
 
       def current_session(user)
-        return false unless user.google_api_token.present?
-        token = user.google_api_token
-        return refresh_token(token) if user.has_expired_google_token?
+        return false unless user.google_access_token.present?
+        return false if user.has_expired_google_token?
 
-        GoogleDrive::Session.new(user.google_api_token)
+        token = user.google_access_token
+        return refresh_token(token) if user.has_expired_google_token?
+        GoogleDrive::Session.new(token)
       end
 
       private

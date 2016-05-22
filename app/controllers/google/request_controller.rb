@@ -4,19 +4,20 @@ module Google
     before_filter :check_api_session
 
     def read
-      google_api_session
+      run_import('read')
     end
 
     private
 
     def run_import(type)
-      # client_class = "Keeperball::YahooApi::Client::#{type.classify}"
-      # client = client_class.constantize.new(access_token, type)
+      client_class = "Keeperball::GoogleApi::Client::#{type.classify}"
+      client = client_class.constantize.new(google_api_session)
 
       if client.execute
-        redirect_to root_path, notice: 'Refreshed ' + type
+        redirect_to root_path, notice: 'Successfully processed ' + type
       else
-        redirect_to root_path, notice: 'Failed miserably to import ' + type
+        redirect_to root_path,
+          notice: 'Failed miserably in an attempt to process ' + type
       end
     end
 
@@ -26,7 +27,7 @@ module Google
 
     def google_api_session
       @session ||=
-        Keeperball::GoogleApi::WebClient.current_session(current_user)
+        Keeperball::GoogleApi::WebClient.new.current_session(current_user)
     end
   end
 end
