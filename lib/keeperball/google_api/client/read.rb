@@ -22,7 +22,7 @@ module Keeperball
           y_end = team['y_end'].to_i
           roster = Keeperball::Roster.where(team_key: team['team_key']).first
           while y <= y_end do
-            name = worksheet[y,x].strip
+            name = worksheet[y, x].strip
             player = Keeperball::Player.where(name: /#{name}/i).first
             player.roster_id = roster.id
             player.salary = worksheet[y, (x+1)]
