@@ -30,6 +30,7 @@ gem 'bcrypt'
 gem 'rspec-rails'
 gem 'nokogiri'
 gem 'tailor'
+gem 'google_drive'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -43,6 +44,7 @@ gem 'tailor'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
+  gem 'debase'
 end
 
 group :development do
