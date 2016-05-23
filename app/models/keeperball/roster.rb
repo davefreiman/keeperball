@@ -11,5 +11,9 @@ module Keeperball
 
     validates :team_key, presence: true, uniqueness: true
     validates :name, presence: true
+
+    def self.find_by_key(key)
+      Keeperball::Roster.where(team_key: key).first
+    end
   end
 end

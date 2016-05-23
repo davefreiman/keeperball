@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   namespace :google do
     get 'request/read' => 'request#read', as: :read_spreadsheet
+    get 'request/write_transaction' => 'request#write_transaction', as: :write_transaction
     get 'oauth/callback' => 'oauth#callback', as: :oauth_callback
     get 'oauth/authorize' => 'oauth#authorize', as: :oauth_authorize
   end
