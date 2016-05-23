@@ -23,6 +23,10 @@ module Keeperball
     cattr_accessor :allowed_contract_types
     self.allowed_contract_types = %w(none entry extension franchise)
 
+    def self.find_by_key(key)
+      Keeperball::Player.where(player_key: key).first
+    end
+
     private
 
     def contract_type_valid

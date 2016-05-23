@@ -7,6 +7,10 @@ module Google
       run_import('read')
     end
 
+    def write_transaction
+      run_import('write_transaction')
+    end
+
     private
 
     def run_import(type)
