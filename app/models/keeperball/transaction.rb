@@ -10,6 +10,13 @@ module Keeperball
     embeds_many :details,
       class_name: 'Keeperball::Transaction::Detail'
 
+    scope :from_season, ->(y = 2016) do
+      where(
+        :completed_at.gte => DateTime.parse("#{y-1}-10-01"),
+        :completed_at.lte => DateTime.parse("#{y}-09-30")
+      ).order('completed_at ASC')
+    end
+
     validates :transaction_key, presence: true, uniqueness: true
     validate :move_type_valid
 
