@@ -14,7 +14,7 @@ module Keeperball
       where(
         :completed_at.gte => DateTime.parse("#{y-1}-10-01"),
         :completed_at.lte => DateTime.parse("#{y}-09-30")
-      )
+      ).order('completed_at ASC')
     end
 
     validates :transaction_key, presence: true, uniqueness: true
