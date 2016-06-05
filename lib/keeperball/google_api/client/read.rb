@@ -2,11 +2,6 @@ module Keeperball
   module GoogleApi
     class Client::Read < Client
 
-      def initialize(session)
-        @sheet_id = Keeperball::Application.config.google_sheet_id
-        super
-      end
-
       def execute
         import_team_players
       end
@@ -16,6 +11,8 @@ module Keeperball
       attr_reader :sheet_id
 
       def import_team_players
+        return unless worksheet.present?
+
         legend.each do |name, team|
           x = team['x_start'].to_i
           y = team['y_start'].to_i
@@ -32,23 +29,6 @@ module Keeperball
             y += 1
           end
           roster.save
-        end
-      end
-
-      def worksheet
-        @worksheet ||= spreadsheet.worksheets[0]
-      end
-
-      def spreadsheet
-        @spreadsheet ||=
-          session.spreadsheet_by_key(sheet_id)
-      end
-
-      def legend
-        @legend ||= begin
-          file_path = "#{Rails.root}/data/sheet_index/2015_2016.json"
-          file = File.read(file_path)
-          JSON.parse(file)
         end
       end
 

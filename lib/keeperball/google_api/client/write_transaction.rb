@@ -2,11 +2,6 @@ module Keeperball
   module GoogleApi
     class Client::WriteTransaction < Client
 
-      def initialize(session)
-        @sheet_id = Keeperball::Application.config.google_sheet_id
-        super
-      end
-
       def execute
         process_transactions
       end
@@ -16,7 +11,9 @@ module Keeperball
       attr_reader :sheet_id
 
       def process_transactions
-        transactions.each do |transaction|
+        return unless worksheet.present?
+
+        Transaction.from_season(current_season).each do |transaction|
           type = transaction.move_type
           method = "process_#{type}"
           self.send(method, transaction.details)
@@ -33,7 +30,7 @@ module Keeperball
             player.roster_id = roster.id
             if detail.source == 'freeagents' && reset_salary?(player)
               player.salary = 12
-              player.expiry = 2017
+              player.expiry = current_season + 1
               player.contract_type = 'entry'
             end
           else
@@ -66,27 +63,6 @@ module Keeperball
           end
         end
         worksheet.save
-      end
-
-      def worksheet
-        @worksheet ||= spreadsheet.worksheets[0]
-      end
-
-      def transactions
-        @transactions ||= Keeperball::Transaction.order('completed_at ASC')
-      end
-
-      def spreadsheet
-        @spreadsheet ||=
-          session.spreadsheet_by_key(sheet_id)
-      end
-
-      def legend
-        @legend ||= begin
-          file_path = "#{Rails.root}/data/sheet_index/2015_2016.json"
-          file = File.read(file_path)
-          JSON.parse(file)
-        end
       end
 
       def write_contract(value)

@@ -5,6 +5,7 @@ module Keeperball
 
     field :team_key, type: String
     field :name, type: String
+    field :season, type: Integer
 
     belongs_to :user, inverse_of: :rosters
     has_many :players, class_name: 'Keeperball::Player'

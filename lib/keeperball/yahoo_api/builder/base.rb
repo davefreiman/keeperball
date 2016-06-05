@@ -13,7 +13,9 @@ module Keeperball
         end
 
         def league_id
-          '353.l.61815'
+          Keeperball::Application.config.keeper_league_id[
+            Keeperball::Application.config.current_year
+          ]
         end
       end
     end
