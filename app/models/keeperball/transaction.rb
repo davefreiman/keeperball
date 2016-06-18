@@ -6,6 +6,7 @@ module Keeperball
     field :move_type, type: String
     field :transaction_key, type: String
     field :completed_at, type: DateTime
+    field :processed, type: Boolean, default: false
 
     embeds_many :details,
       class_name: 'Keeperball::Transaction::Detail'
@@ -16,6 +17,8 @@ module Keeperball
         :completed_at.lte => DateTime.parse("#{y}-09-30")
       ).order('completed_at ASC')
     end
+
+    scope :unprocessed, -> { where(:processed => false) }
 
     validates :transaction_key, presence: true, uniqueness: true
     validate :move_type_valid

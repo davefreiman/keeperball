@@ -38,5 +38,23 @@ module Keeperball
         expect(Keeperball::Transaction.from_season(2015).count).to eq 2
       end
     end
+
+    describe '.unprocessed' do
+      it 'pulls in transactions that haven\'t been processed' do
+        Keeperball::Transaction.create(
+          transaction_key: 'validkey',
+          move_type: 'add',
+          completed_at: DateTime.parse('2015-11-11')
+        )
+        Keeperball::Transaction.create(
+          transaction_key: 'validkey2',
+          move_type: 'add',
+          completed_at: DateTime.parse('2014-11-11'),
+          processed: true
+        )
+
+        expect(Keeperball::Transaction.unprocessed.count).to eq 1
+      end
+    end
   end
 end

@@ -13,10 +13,11 @@ module Keeperball
       def process_transactions
         return unless worksheet.present?
 
-        Transaction.from_season(current_season).each do |transaction|
-          type = transaction.move_type
+        Transaction.unprocessed.from_season(current_season).each do |t|
+          type = t.move_type
           method = "process_#{type}"
-          self.send(method, transaction.details)
+          self.send(method, t.details)
+          t.update_attributes(processed: true)
         end
         write_result
       end
