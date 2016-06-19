@@ -1,0 +1,17 @@
+<div class="sidebar__header">
+  <h2>Keeperball</h2>
+</div>
+
+<div class="sidebar__content">
+  <ul class="sidebar__navigation">
+    <li class="sidebar__navigation-element">
+      <%= link_to "#{fa_icon('exchange')} Trades".html_safe, new_trade_path %>
+    </li>
+    <li class="sidebar__navigation-element">
+      <%= link_to "#{fa_icon('list-ul')} Rosters".html_safe, rosters_path %>
+    </li>
+    <li class="sidebar__navigation-element">
+      <%= link_to "#{fa_icon('bullhorn')} Chirp".html_safe, banters_path %>
+    </li>
+  </ul>
+</div>

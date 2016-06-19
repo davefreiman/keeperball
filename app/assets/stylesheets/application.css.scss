@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+
+@import 'globals/sidebar';
+@import 'globals/layout';
+@import 'globals/links';
+@import 'globals/fonts';
+
+@import 'font-awesome';

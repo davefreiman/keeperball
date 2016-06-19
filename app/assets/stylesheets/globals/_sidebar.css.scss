@@ -1,0 +1,24 @@
+.sidebar__header {
+
+}
+
+.sidebar__content {
+
+}
+
+  .sidebar__navigation {
+    padding: 0;
+  }
+
+    .sidebar__navigation-element {
+      list-style: none;
+      height: 35px;
+      border-bottom: 1px solid darkorange;
+
+      a {
+        padding: 5px;
+        display: block;
+        width: 100%;
+        height: 100%;
+      }
+    }

@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy', as: :logout
   resources :sessions, :only => [:create]
 
+  resources :trades
+  resources :banters
+  resources :rosters, :only => [:index, :show]
+
   namespace :yahoo do
     get 'request/transactions' => 'request#transactions', as: :refresh_transactions
     get 'request/rosters' => 'request#rosters', as: :import_rosters
