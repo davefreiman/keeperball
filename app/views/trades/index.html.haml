@@ -1,0 +1,14 @@
+.page-heading
+  %h1 Keeperball Trades
+
+.subheading-menu
+  %ul.subheading-menu__list
+    %li.subheading-menu__list-item
+      = link_to 'Propose a Trade', new_trade_path
+    %li.subheading-menu__list-item
+      = link_to 'Current Offers (TODO)', new_trade_path
+
+.main-container
+  .trades-index-content
+    - @trades.each do |trade|
+      %p= trade.trade_for_display

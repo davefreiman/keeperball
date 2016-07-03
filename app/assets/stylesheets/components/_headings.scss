@@ -1,0 +1,29 @@
+.page-heading {
+  margin-left: 15px;
+}
+
+.subheading-menu {
+  padding-left: 15px;
+  border-top: 2px solid darkorange;
+  border-bottom: 2px solid darkorange;
+  background: $darkBlue;
+}
+
+  .subheading-menu__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+    .subheading-menu__list-item {
+      display: inline-block;
+      width: 200px;
+    }
+    
+      .subheading-menu__list-item a {
+        width: 100%;
+        height: 100%;
+        display: block;
+        padding: 15px 5px;
+        text-align: center;
+      }

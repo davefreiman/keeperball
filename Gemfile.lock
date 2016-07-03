@@ -95,6 +95,8 @@ GEM
       multi_json (~> 1.11)
       os (~> 0.9)
       signet (~> 0.7)
+    haml (4.0.7)
+      tilt
     i18n (0.7.0)
     jbuilder (2.4.1)
       activesupport (>= 3.0.0, < 5.1)
@@ -250,6 +252,7 @@ DEPENDENCIES
   debase
   font-awesome-rails
   google_drive
+  haml
   jbuilder (~> 2.0)
   jquery-rails
   mongoid (~> 5.1.0)

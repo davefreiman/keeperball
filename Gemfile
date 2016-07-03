@@ -32,6 +32,7 @@ gem 'nokogiri'
 gem 'tailor'
 gem 'google_drive'
 gem 'font-awesome-rails'
+gem 'haml'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'

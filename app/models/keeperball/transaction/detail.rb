@@ -22,6 +22,14 @@ module Keeperball
     cattr_accessor :allowed_detail_types
     self.allowed_detail_types = %w(drop add trade)
 
+    def piece_moved
+      Keeperball::Player.find_by_key(player_key).presence || cap.presence
+    end
+
+    def destination_team
+      Keeperball::Roster.find_by_key(destination)
+    end
+
     private
 
     def detail_type_valid

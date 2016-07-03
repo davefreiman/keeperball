@@ -2,6 +2,7 @@ module Keeperball
   class Transaction
     include Mongoid::Document
     include Mongoid::Timestamps
+    include Keeperball::ViewModels::TransactionViewModel
 
     field :move_type, type: String
     field :transaction_key, type: String
