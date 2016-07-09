@@ -4,9 +4,6 @@
 
 .subheading-menu {
   padding-left: 15px;
-  border-top: 2px solid darkorange;
-  border-bottom: 2px solid darkorange;
-  background: $darkBlue;
 }
 
   .subheading-menu__list {
@@ -18,6 +15,10 @@
     .subheading-menu__list-item {
       display: inline-block;
       width: 200px;
+
+      &.subheading-menu__list-item--active {
+        opacity: 0.6;
+      }
     }
     
       .subheading-menu__list-item a {
@@ -26,4 +27,6 @@
         display: block;
         padding: 15px 5px;
         text-align: center;
+        color: white;
+        background: $darkBlue;
       }

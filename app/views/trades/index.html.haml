@@ -1,14 +1,21 @@
-.page-heading
-  %h1 Keeperball Trades
+- title 'All Trades'
 
-.subheading-menu
-  %ul.subheading-menu__list
-    %li.subheading-menu__list-item
-      = link_to 'Propose a Trade', new_trade_path
-    %li.subheading-menu__list-item
-      = link_to 'Current Offers (TODO)', new_trade_path
+= render 'trades/headings'
 
 .main-container
   .trades-index-content
-    - @trades.each do |trade|
-      %p= trade.trade_for_display
+    .trades-table
+      - @trades.each_with_index do |trade, i|
+        .trades-table__trade_unit{ class: ('trades-table__trade_unit--even' if i % 2 == 0) }
+          .trades-table__row
+            .trades-table__row-cell.trades-table__row-cell--legend Date
+            .trades-table__row-cell
+              = trade.formatted_completed_date
+          - trade.details_for_display.each do |dest_team, players|
+            .trades-table__row
+              .trades-table__row-cell.trades-table__row-cell--legend To
+              .trades-table__row-cell
+                %span= dest_team
+              .trades-table__row-cell
+                %span= players.join(', ')
+

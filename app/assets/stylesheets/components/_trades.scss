@@ -1,0 +1,26 @@
+.trades-index-content {}
+
+  .trades-table {}
+
+    .trades-table__trade_unit {
+      margin: 10px 15px;
+      background: white
+    }
+
+    .trades-table__trade_unit--even {
+      background: $lightPhlegm;
+    }
+      .trades-table__row {
+        width: 100%;
+        border-bottom: 1px solid $lightBlue;
+      }
+
+      .trades-table__row-cell {
+        display: inline-block;
+        padding: 5px;
+        width: 20%;
+      }
+
+      .trades-table__row-cell--legend {
+        width: 7%;
+      }
