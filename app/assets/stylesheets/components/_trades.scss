@@ -4,7 +4,7 @@
 
     .trades-table__trade_unit {
       margin: 10px 15px;
-      background: white
+      background: $lightishbluegray;
     }
 
     .trades-table__trade_unit--even {
@@ -19,8 +19,12 @@
         display: inline-block;
         padding: 5px;
         width: 20%;
-      }
 
-      .trades-table__row-cell--legend {
-        width: 7%;
+        &.trades-table__row-cell--players {
+          width: 50%;
+        }
+
+        &.trades-table__row-cell--legend {
+          width: 7%;
+        }
       }

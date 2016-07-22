@@ -1,0 +1,8 @@
+- id = team_type == 'to' ? 'receive_players' : 'send_players'
+- label = team_type == 'to' ? 'Players to Receive' : 'Players to Trade Away'
+
+.form-property{class: "form-property--#{id}"}
+  .label
+    = label_tag id, label
+  .selector
+    = select_tag id, options_from_collection_for_select(roster.players, 'player_key', 'name'), multiple: true

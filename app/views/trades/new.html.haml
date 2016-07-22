@@ -1,3 +1,23 @@
 - title 'New Trade'
 
 = render 'trades/headings'
+
+.main-container
+  .trades-new-content
+    .trades-new-form
+      = form_tag trades_path, method: :post, id: 'new_trade_form' do
+        .form-property
+          .label
+            = label_tag 'from_team', 'Your Team'
+          .selector
+            = select_tag 'from_team', options_from_collection_for_select(Keeperball::Roster.all, 'team_key', 'name'), data: { from_team_trigger: '' }
+
+        = render 'trades/player_fields', roster: Keeperball::Roster.first, team_type: 'from'
+
+        .form-property
+          .label
+            = label_tag 'to_team', 'Their Team'
+          .selector
+            = select_tag 'to_team', options_from_collection_for_select(Keeperball::Roster.all, 'team_key', 'name'), data: { to_team_trigger: '' }
+
+        = render 'trades/player_fields', roster: Keeperball::Roster.first, team_type: 'to'

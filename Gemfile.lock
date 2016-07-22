@@ -110,6 +110,8 @@ GEM
     launchy (2.4.3)
       addressable (~> 2.3)
     little-plugger (1.1.4)
+    lodash-rails (3.10.1)
+      railties (>= 3.1)
     log_switch (0.3.0)
     logging (2.1.0)
       little-plugger (~> 1.1)
@@ -255,6 +257,7 @@ DEPENDENCIES
   haml
   jbuilder (~> 2.0)
   jquery-rails
+  lodash-rails
   mongoid (~> 5.1.0)
   nokogiri
   oauth
@@ -270,4 +273,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.11.2
+   1.12.5

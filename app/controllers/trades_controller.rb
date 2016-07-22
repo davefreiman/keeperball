@@ -7,6 +7,7 @@ class TradesController < ApplicationController
   end
 
   def new
+    @trade = Keeperball::Transaction.new
   end
 
   def create
