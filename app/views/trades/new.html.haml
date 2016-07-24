@@ -12,7 +12,8 @@
           .selector
             = select_tag 'from_team', options_from_collection_for_select(Keeperball::Roster.all, 'team_key', 'name'), data: { from_team_trigger: '' }
 
-        = render 'trades/player_fields', roster: Keeperball::Roster.first, team_type: 'from'
+        .form-group--from-team{ data: { from_team_fields: '' } }
+          = render 'trades/player_fields', roster: Keeperball::Roster.first, team_type: 'from'
 
         .form-property
           .label
@@ -20,4 +21,5 @@
           .selector
             = select_tag 'to_team', options_from_collection_for_select(Keeperball::Roster.all, 'team_key', 'name'), data: { to_team_trigger: '' }
 
-        = render 'trades/player_fields', roster: Keeperball::Roster.first, team_type: 'to'
+        .form-group--to-team{ data: { to_team_fields: '' } }
+          = render 'trades/player_fields', roster: Keeperball::Roster.first, team_type: 'to'

@@ -15,6 +15,7 @@ Rails.application.routes.draw do
 
   resources :trades
   resources :banters
+  get 'rosters/trade_form' => 'rosters#trade_form', as: :trades_roster
   resources :rosters, :only => [:index, :show]
 
   namespace :yahoo do

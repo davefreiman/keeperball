@@ -2,14 +2,38 @@ var NewTradeForm = (function(){
     'use strict';
 
     var handleFromTeamChange = function($fromTrigger) {
-            $fromTrigger.on('change', function(){
-                alert('from team change');
+            var $fromTeam = $('[data-from-team-fields]');
+            if (_.isEmpty($fromTeam)) { return; }
+
+            $fromTrigger.on('change', function() {
+                $.ajax({
+                    url: '/rosters/trade_form',
+                    data: {
+                        team_type: 'from',
+                        roster: $(this).val()
+                    },
+                    dataType: 'json'
+                }).always(function(response){
+                    $fromTeam.html(response.responseText);
+                });
             });
         },
 
         handleToTeamChange = function($toTrigger) {
+            var $toTeam = $('[data-to-team-fields]');
+            if (_.isEmpty($toTeam)) { return; }
+
             $toTrigger.on('change', function(){
-                alert('to team change');
+                $.ajax({
+                    url: '/rosters/trade_form',
+                    data: {
+                        team_type: 'to',
+                        roster: $(this).val()
+                    },
+                    dataType: 'json'
+                }).always(function(response){
+                    $toTeam.html(response.responseText);
+                });
             });
         },
 
