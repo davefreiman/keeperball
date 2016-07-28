@@ -12,6 +12,12 @@ class TradesController < ApplicationController
   end
 
   def create
+    @trade = Keeperball::Transaction.new(move_type: 'trade', pending: true)
+
+    processor = Keeperball::Transaction::Processor.new(@trade, trade_params)
+    processor.process
+
+    raise ''
   end
 
   def update
@@ -24,5 +30,18 @@ class TradesController < ApplicationController
   end
 
   def accept
+  end
+
+  private
+
+  def trade_params
+    params.permit(
+      :from_team,
+      :send_cap,
+      :to_team,
+      :get_cap,
+      send_players: [],
+      get_players: []
+    )
   end
 end

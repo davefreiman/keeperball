@@ -8,6 +8,7 @@ module Keeperball
     field :transaction_key, type: String
     field :completed_at, type: DateTime
     field :processed, type: Boolean, default: false
+    field :pending, type: Boolean, default: false
 
     embeds_many :details,
       class_name: 'Keeperball::Transaction::Detail'

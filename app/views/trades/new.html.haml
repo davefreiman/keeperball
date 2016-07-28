@@ -6,20 +6,38 @@
   .trades-new-content
     .trades-new-form
       = form_tag trades_path, method: :post, id: 'new_trade_form' do
-        .form-property
-          .label
-            = label_tag 'from_team', 'Your Team'
-          .selector
-            = select_tag 'from_team', options_from_collection_for_select(Keeperball::Roster.all, 'team_key', 'name'), data: { from_team_trigger: '' }
+        .trades-new-form__form-section.trades-new-form__form-section--half-width
+          .form-property
+            .label
+              = label_tag 'from_team', 'Your Team'
+            .selector
+              = select_tag 'from_team', options_from_collection_for_select(Keeperball::Roster.all, 'team_key', 'name'), data: { from_team_trigger: '' }
 
-        .form-group--from-team{ data: { from_team_fields: '' } }
-          = render 'trades/player_fields', roster: Keeperball::Roster.first, team_type: 'from'
+          .form-group--from-team{ data: { from_team_fields: '' } }
+            = render 'trades/player_fields', roster: Keeperball::Roster.first, team_type: 'from'
 
-        .form-property
-          .label
-            = label_tag 'to_team', 'Their Team'
-          .selector
-            = select_tag 'to_team', options_from_collection_for_select(Keeperball::Roster.all, 'team_key', 'name'), data: { to_team_trigger: '' }
+          .form-property
+            .label
+              = label_tag 'send_cap', 'Send Cap'
+            .selector
+              = number_field_tag 'send_cap', 0
 
-        .form-group--to-team{ data: { to_team_fields: '' } }
-          = render 'trades/player_fields', roster: Keeperball::Roster.first, team_type: 'to'
+        .trades-new-form__form-section.trades-new-form__form-section--half-width
+          .form-property
+            .label
+              = label_tag 'to_team', 'Their Team'
+            .selector
+              = select_tag 'to_team', options_from_collection_for_select(Keeperball::Roster.all, 'team_key', 'name'), data: { to_team_trigger: '' }
+
+          .form-group--to-team{ data: { to_team_fields: '' } }
+            = render 'trades/player_fields', roster: Keeperball::Roster.first, team_type: 'to'
+
+          .form-property
+            .label
+              = label_tag 'get_cap', 'Get Cap'
+            .selector
+              = number_field_tag 'get_cap', 0
+
+        .trades-new-form__form-section.trades-new-form__form-section--full-width
+          .button-container
+            = button_tag 'submit'

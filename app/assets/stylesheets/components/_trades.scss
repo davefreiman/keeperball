@@ -28,3 +28,22 @@
           width: 7%;
         }
       }
+
+.trades-new-content {}
+
+  .trades-new-form {}
+
+    .trades-new-form__form-section {
+      display: block;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .trades-new-form__form-section--half-width {
+      display: inline-block;
+      width: 45%;
+    }
+
+    .trades-new-form__form-section--full-width {
+      width: 90%; // lol you thought full width but I LIED
+    }
