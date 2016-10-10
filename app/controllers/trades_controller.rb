@@ -19,10 +19,6 @@ class TradesController < ApplicationController
       completed_at: DateTime.now # TODO: get rid of this so we can have managers accept
     )
 
-    Rails.logger.debug "#####" * 100
-    Rails.logger.debug trade_params.inspect
-    Rails.logger.debug "#####" * 100
-
     processor = Keeperball::Transaction::Processor.new(@trade, trade_params)
     if processor.process && @trade.save!
       redirect_to trades_path, notice: 'Trade Saved, notifying managers'
