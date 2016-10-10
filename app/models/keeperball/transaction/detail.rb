@@ -23,11 +23,21 @@ module Keeperball
     self.allowed_detail_types = %w(drop add trade)
 
     def piece_moved
-      Keeperball::Player.find_by_key(player_key).presence || cap.presence
+      @piece_moved ||=
+        Keeperball::Player.find_by_key(player_key).presence || cap.presence
+    end
+
+    def piece_moved_name
+      return "$#{piece_moved.to_s} cap" if cap.present?
+      piece_moved.name
     end
 
     def destination_team
       Keeperball::Roster.find_by_key(destination)
+    end
+
+    def source_team
+      Keeperball::Roster.find_by_key(source)
     end
 
     private

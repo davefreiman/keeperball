@@ -16,7 +16,7 @@ var NewTradeForm = (function(){
                 }).always(function(response){
                     $fromTeam.html(response.responseText);
                 });
-            });
+            }).trigger('change');
         },
 
         handleToTeamChange = function($toTrigger) {
@@ -34,7 +34,7 @@ var NewTradeForm = (function(){
                 }).always(function(response){
                     $toTeam.html(response.responseText);
                 });
-            });
+            }).trigger('change');
         },
 
         init = function() {

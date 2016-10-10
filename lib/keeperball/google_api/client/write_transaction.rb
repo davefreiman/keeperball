@@ -43,18 +43,40 @@ module Keeperball
 
       def process_trade(details)
         details.each do |detail|
-          player = Keeperball::Player.find_by_key(detail.player_key)
-          destination = Keeperball::Roster.find_by_key(detail.destination)
-          player.roster_id = destination.id
-          player.save
+          if detail.cap.present?
+            process_cap_movement(detail)
+          else
+            process_player_movement(detail)
+          end
         end
+      end
+
+      def process_player_movement(detail)
+        player = Keeperball::Player.find_by_key(detail.player_key)
+        player.roster_id = detail.destination_team.id
+        player.save
+      end
+
+      def process_cap_movement(detail)
+        cap_moved = detail.cap
+        dest_initial_cap = detail.destination_team.next_year_cap
+        source_initial_cap = detail.source_team.next_year_cap
+
+        detail.destination_team.next_year_cap=(dest_initial_cap + cap_moved)
+        detail.source_team.next_year_cap=(source_initial_cap - cap_moved)
+
+        detail.destination_team.save
+        detail.source_team.save
       end
 
       def write_result
         legend.each do |name, team|
           x = team['x_start'].to_i
           y = team['y_start'].to_i
+          cap_coords = [(y-2), (x+2)]
           roster = Keeperball::Roster.where(team_key: team['team_key']).first
+          worksheet[cap_coords] = roster.next_year_cap
+
           roster.players.each do |player|
             worksheet[y, x] = player.name
             worksheet[y, (x+1)] = player.salary

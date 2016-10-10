@@ -7,7 +7,7 @@ module Keeperball
         return unless move_type == 'trade'
         details.each_with_object({}) do |detail, hash|
           hash[detail.destination_team.name] ||= []
-          hash[detail.destination_team.name] << detail.piece_moved.name
+          hash[detail.destination_team.name] << detail.piece_moved_name
         end
       end
 

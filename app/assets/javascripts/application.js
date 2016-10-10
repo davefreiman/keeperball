@@ -15,3 +15,6 @@
 //= require turbolinks
 //= require lodash
 //= require_tree .
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
