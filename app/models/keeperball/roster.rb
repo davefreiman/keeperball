@@ -23,8 +23,9 @@ module Keeperball
       self.cap_map[next_year]
     end
 
-    def next_year_cap=(value)
+    def set_next_year_cap(value)
       self.cap_map[next_year] = value
+      save
     end
 
     private

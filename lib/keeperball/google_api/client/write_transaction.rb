@@ -62,26 +62,29 @@ module Keeperball
         dest_initial_cap = detail.destination_team.next_year_cap
         source_initial_cap = detail.source_team.next_year_cap
 
-        detail.destination_team.next_year_cap=(dest_initial_cap + cap_moved)
-        detail.source_team.next_year_cap=(source_initial_cap - cap_moved)
-
-        detail.destination_team.save
-        detail.source_team.save
+        detail.destination_team.set_next_year_cap(dest_initial_cap + cap_moved)
+        detail.source_team.set_next_year_cap(source_initial_cap - cap_moved)
       end
 
       def write_result
         legend.each do |name, team|
           x = team['x_start'].to_i
           y = team['y_start'].to_i
-          cap_coords = [(y-2), (x+2)]
           roster = Keeperball::Roster.where(team_key: team['team_key']).first
-          worksheet[cap_coords] = roster.next_year_cap
+          worksheet[(y-2), (x+2)] = roster.next_year_cap
 
           roster.players.each do |player|
             worksheet[y, x] = player.name
             worksheet[y, (x+1)] = player.salary
             worksheet[y, (x+2)] = player.expiry
             worksheet[y, (x+3)] = write_contract(player.contract_type)
+            y += 1
+          end
+          while (y - team['y_start'].to_i) < 12
+            worksheet[y, x] = ''
+            worksheet[y, (x+1)] = ''
+            worksheet[y, (x+2)] = ''
+            worksheet[y, (x+3)] = ''
             y += 1
           end
         end

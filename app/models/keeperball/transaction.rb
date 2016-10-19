@@ -15,8 +15,8 @@ module Keeperball
 
     scope :from_season, ->(y = 2016) do
       where(
-        :completed_at.gte => DateTime.parse("#{y-1}-10-01"),
-        :completed_at.lte => DateTime.parse("#{y}-09-30")
+        :completed_at.gt => DateTime.parse("#{y-1}-10-20"),
+        :completed_at.lte => DateTime.parse("#{y}-10-20")
       ).order('completed_at ASC')
     end
 

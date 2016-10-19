@@ -11,7 +11,7 @@ module Keeperball
 
     embedded_in :transaction,
       class_name: 'Keeperball::Transaction',
-      inverse_of: :detail
+      inverse_of: :details
 
     validates :detail_type, presence: true
     validates :source, presence: true
