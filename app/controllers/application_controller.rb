@@ -18,4 +18,14 @@ class ApplicationController < ActionController::Base
   def require_login
     redirect_to root_path, notice: 'Login Required' unless current_user
   end
+
+  private
+
+  def current_year_key
+    Keeperball::Application.config.yahoo_game_ids[current_year]
+  end
+
+  def current_year
+    Keeperball::Application.config.current_year
+  end
 end

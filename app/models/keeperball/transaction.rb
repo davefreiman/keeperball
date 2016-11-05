@@ -2,6 +2,7 @@ module Keeperball
   class Transaction
     include Mongoid::Document
     include Mongoid::Timestamps
+    include Seasonable
     include Keeperball::ViewModels::TransactionViewModel
 
     field :move_type, type: String
@@ -13,13 +14,6 @@ module Keeperball
     embeds_many :details,
       class_name: 'Keeperball::Transaction::Detail'
 
-    scope :from_season, ->(y = 2016) do
-      where(
-        :completed_at.gt => DateTime.parse("#{y-1}-10-20"),
-        :completed_at.lte => DateTime.parse("#{y}-10-20")
-      ).order('completed_at ASC')
-    end
-
     scope :unprocessed, -> { where(:processed => false) }
 
     validates :transaction_key, presence: true, uniqueness: true
@@ -29,6 +23,10 @@ module Keeperball
     self.allowed_move_types = %w(add trade)
 
     private
+
+    def self.yahoo_reference_key
+      :transaction_key
+    end
 
     def move_type_valid
       return true if self.allowed_move_types.include?(move_type)

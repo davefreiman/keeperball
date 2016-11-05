@@ -1,7 +1,9 @@
 class TradesController < ApplicationController
   def index
-    @trades = Keeperball::Transaction.
-      where(move_type: 'trade').order('completed_at ASC')
+    @trades = Keeperball::Transaction
+                .from_season(season)
+                .where(move_type: 'trade')
+                .order('completed_at ASC')
   end
 
   def show
@@ -15,7 +17,7 @@ class TradesController < ApplicationController
     @trade = Keeperball::Transaction.new(
       move_type: 'trade',
       pending: true,
-      transaction_key: 'custom_' + SecureRandom.uuid,
+      transaction_key: current_year_key + '.custom_' + SecureRandom.uuid,
       completed_at: DateTime.now # TODO: get rid of this so we can have managers accept
     )
 
@@ -48,5 +50,9 @@ class TradesController < ApplicationController
       send_players: [],
       get_players: []
     )
+  end
+
+  def season
+    (params[:season] || current_year).to_i
   end
 end
