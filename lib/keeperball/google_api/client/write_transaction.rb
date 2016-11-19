@@ -93,7 +93,7 @@ module Keeperball
 
       def write_contract(value)
         return 'Extension' if value.downcase == 'extension'
-        return 'Tag' if value.downcase == 'franchise'
+        return 'Franchise Tag' if value.downcase == 'franchise'
         ''
       end
 

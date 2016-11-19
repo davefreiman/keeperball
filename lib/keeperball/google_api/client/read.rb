@@ -34,7 +34,7 @@ module Keeperball
 
       def import_contract(value)
         return 'extension' if value.downcase == 'extension'
-        return 'franchise' if value.downcase == 'tag'
+        return 'franchise' if value.downcase == 'franchise tag'
         'entry'
       end
     end

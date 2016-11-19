@@ -1,9 +1,9 @@
 class TradesController < ApplicationController
   def index
-    @trades = Keeperball::Transaction
-                .from_season(season)
-                .where(move_type: 'trade')
-                .order('completed_at ASC')
+    @trades = Keeperball::Transaction.
+      from_season(season).
+      where(move_type: 'trade').
+      order('completed_at ASC')
   end
 
   def show

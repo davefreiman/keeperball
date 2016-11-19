@@ -3,10 +3,12 @@ module Keeperball
     extend ActiveSupport::Concern
 
     included do
-      default_scope -> { where(yahoo_reference_key => /^#{current_year_key}\./) }
+      default_scope -> { where(yahoo_reference_key => /^#{current_key}\./) }
 
       scope :from_season, ->(y = current_year) do
-        where(yahoo_reference_key => /^#{key_from_year(y)}\./).order('completed_at ASC')
+        where(
+          yahoo_reference_key => /^#{key_from_year(y)}\./
+        ).order('completed_at ASC')
       end
     end
 
@@ -18,7 +20,7 @@ module Keeperball
         :key
       end
 
-      def current_year_key
+      def current_key
         key_from_year(current_year)
       end
 
