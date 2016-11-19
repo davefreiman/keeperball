@@ -20,7 +20,7 @@ module Keeperball
 
       def worksheet
         @worksheet ||= spreadsheet.worksheets.select do |ws|
-          ws.title == "#{(current_season - 1).to_s}-#{current_season}"
+          ws.title == season_key
         end.first
       end
 
@@ -31,10 +31,14 @@ module Keeperball
 
       def legend
         @legend ||= begin
-          file_path = "#{Rails.root}/data/sheet_index/2015_2016.json"
+          file_path = "#{Rails.root}/data/sheet_index/#{season_key}.json"
           file = File.read(file_path)
           JSON.parse(file)
         end
+      end
+
+      def season_key
+        "#{(current_season - 1).to_s}-#{current_season}"
       end
     end
   end

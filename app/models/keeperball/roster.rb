@@ -2,6 +2,7 @@ module Keeperball
   class Roster
     include Mongoid::Document
     include Mongoid::Timestamps
+    include Seasonable
 
     field :team_key, type: String
     field :name, type: String
@@ -29,6 +30,10 @@ module Keeperball
     end
 
     private
+
+    def self.yahoo_reference_key
+      :team_key
+    end
 
     def default_cap_map
       return if cap_map.has_key?(next_year)

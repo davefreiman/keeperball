@@ -13,7 +13,7 @@ module Keeperball
         end
 
         def league_id
-          Keeperball::Application.config.keeper_league_id[
+          Keeperball::Application.config.yahoo_league_ids[
             Keeperball::Application.config.current_year
           ]
         end

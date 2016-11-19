@@ -2,10 +2,12 @@ require 'rails_helper'
 
 module Keeperball
   describe Transaction do
+    it_should_behave_like Seasonable, { move_type: 'add' }
+
     describe 'validations' do
       it 'ensures the move passed is valid' do
         transaction = Keeperball::Transaction.new(
-          transaction_key: 'validkey',
+          transaction_key: '364.validkey',
           move_type: 'baseball'
         )
 
@@ -18,38 +20,39 @@ module Keeperball
 
     describe '.from_season' do
       it 'loads only transactions from a specific season' do
+
         Keeperball::Transaction.create(
-          transaction_key: 'validkey',
+          transaction_key: '353.validkey',
           move_type: 'add',
           completed_at: DateTime.parse('2015-11-11')
         )
         Keeperball::Transaction.create(
-          transaction_key: 'validkey2',
+          transaction_key: '364.validkey2',
           move_type: 'add',
-          completed_at: DateTime.parse('2014-11-11')
+          completed_at: DateTime.parse('2016-11-11')
         )
         Keeperball::Transaction.create(
-          transaction_key: 'validkey3',
+          transaction_key: '364.validkey3',
           move_type: 'add',
-          completed_at: DateTime.parse('2015-03-11')
+          completed_at: DateTime.parse('2017-03-11')
         )
 
         expect(Keeperball::Transaction.from_season(2016).count).to eq 1
-        expect(Keeperball::Transaction.from_season(2015).count).to eq 2
+        expect(Keeperball::Transaction.from_season(2017).count).to eq 2
       end
     end
 
     describe '.unprocessed' do
       it 'pulls in transactions that haven\'t been processed' do
         Keeperball::Transaction.create(
-          transaction_key: 'validkey',
+          transaction_key: '364.validkey',
           move_type: 'add',
-          completed_at: DateTime.parse('2015-11-11')
+          completed_at: DateTime.parse('2016-11-11')
         )
         Keeperball::Transaction.create(
-          transaction_key: 'validkey2',
+          transaction_key: '364.validkey2',
           move_type: 'add',
-          completed_at: DateTime.parse('2014-11-11'),
+          completed_at: DateTime.parse('2016-11-11'),
           processed: true
         )
 

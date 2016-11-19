@@ -2,6 +2,7 @@ module Keeperball
   class Player
     include Mongoid::Document
     include Mongoid::Timestamps
+    include Seasonable
 
     field :name, type: String
     field :player_key, type: String
@@ -28,6 +29,10 @@ module Keeperball
     end
 
     private
+
+    def self.yahoo_reference_key
+      :player_key
+    end
 
     def contract_type_valid
       return true if self.allowed_contract_types.include?(contract_type)
