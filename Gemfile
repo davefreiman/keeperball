@@ -34,6 +34,7 @@ gem 'google_drive'
 gem 'font-awesome-rails'
 gem 'haml'
 gem 'lodash-rails'
+gem 'therubyracer'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
