@@ -2,7 +2,7 @@
 - label = team_type == 'to' ? 'Players to Receive' : 'Players to Trade Away'
 
 .form-property{class: "form-property--#{id}"}
-  .label
+  .label.label--multi
     = label_tag id, label
-  .selector
+  .selector.selector--multi
     = select_tag id, options_from_collection_for_select(roster.players, 'player_key', 'name'), multiple: true

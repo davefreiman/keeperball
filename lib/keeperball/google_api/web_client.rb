@@ -61,7 +61,7 @@ module Keeperball
 
       def redirect_uri
         Rails.application.routes.url_helpers.google_oauth_callback_url(
-          host: 'friedgoods.com'
+          host: Rails.application.config.domain
         )
       end
     end

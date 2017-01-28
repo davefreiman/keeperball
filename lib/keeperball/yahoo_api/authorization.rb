@@ -29,7 +29,7 @@ module Keeperball
 
       def oauth_callback_url
         Rails.application.routes.url_helpers.oauth_callback_url(
-          host: 'friedgoods.com'
+          host: Rails.application.config.domain
         )
       end
 
