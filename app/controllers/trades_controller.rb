@@ -22,8 +22,13 @@ class TradesController < ApplicationController
     )
 
     processor = Keeperball::Transaction::Processor.new(@trade, trade_params)
-    if processor.process && @trade.save!
+    if processor.process && @trade.save
       redirect_to trades_path, notice: 'Trade Saved, notifying managers'
+    else
+      flash.now[:alert] =
+        'Trade failed to save: ' +
+        "#{@trade.errors.first.first.to_s} #{@trade.errors.first.second}"
+      render :new
     end
   end
 

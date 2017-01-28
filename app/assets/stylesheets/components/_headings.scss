@@ -14,7 +14,7 @@
 
     .subheading-menu__list-item {
       display: inline-block;
-      width: 200px;
+      width: 225px;
 
       &.subheading-menu__list-item--active {
         opacity: 0.6;
@@ -28,5 +28,5 @@
         padding: 15px 5px;
         text-align: center;
         color: white;
-        background: $darkBlue;
+        background: $ball;
       }

@@ -18,6 +18,7 @@ module Keeperball
 
     validates :transaction_key, presence: true, uniqueness: true
     validate :move_type_valid
+    validate :details_present
 
     cattr_accessor :allowed_move_types
     self.allowed_move_types = %w(add trade)
@@ -31,6 +32,11 @@ module Keeperball
     def move_type_valid
       return true if self.allowed_move_types.include?(move_type)
       errors[:move_type].push('invalid')
+    end
+
+    def details_present
+      return true unless details.empty?
+      errors[:details].push('can not be empty')
     end
   end
 end

@@ -1,6 +1,9 @@
 .sidebar__header {
 
 }
+  .sidebar__header h2 {
+    text-align: center;
+  }
 
 .sidebar__content {
 
@@ -12,7 +15,8 @@
 
     .sidebar__navigation-element {
       list-style: none;
-      height: 35px;
+      text-align: center;
+      height: 45px;
       border-bottom: 1px solid $ball;
 
       a {

@@ -1,0 +1,34 @@
+.form-property {
+
+}
+
+  .form-property .label, .form-property .selector {
+    display: inline-block;
+    width: 40%;
+    padding: 15px;
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  .form-property input, .form-property select {
+    padding: 10px;
+    text-align: left;
+  }
+
+  .form-property .selector--multi select {
+    height: 260px;
+    padding: 10px;
+    font-size: 14px;
+  }
+
+  .form-property .label--multi, .form-property .selector--multi {
+    vertical-align: top;
+  }
+
+.button-container button {
+  background: $ball;
+  width: 200px;
+  height: 75px;
+  font-size: 22px;
+  color: $background;
+}

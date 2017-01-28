@@ -9,17 +9,21 @@ body {
 
 .main {
   overflow: auto;
+
   .sidebar {
     display: inline-block;
-    width: 12%;
-    border-right: 2px solid $ball;
-    float: left;
+    width: 14%;
+    background: $ball;
+    position: fixed;
     min-height: 100vh;
+    left: 0;
   }
+
   .content {
     display: inline-block;
     width: 85%;
     margin-top: 20px;
     padding: 0 30px;
+    margin-left: 14%;
   }
 }
