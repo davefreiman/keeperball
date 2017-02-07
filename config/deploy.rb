@@ -4,7 +4,7 @@ lock '3.6.1'
 set :application, 'keeperball'
 set :repo_url, 'git@github.com:davefreiman/keeperball.git'
 set :deploy_to, '/var/www/keeperball'
-set :assets_roles, [:app]
+set :assets_roles, [:web, :app]
 
 set :linked_files, fetch(:linked_files, []).push(
   'config/mongoid.yml',

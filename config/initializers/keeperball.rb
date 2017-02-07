@@ -1,5 +1,8 @@
 Keeperball::Application.configure do
-  config.domain = 'friedgoods.com'
+  config.domain = {
+    'development' => 'friedgoods.com',
+    'production' => 'keeperball.friedgoods.com'
+  }[Rails.env]
 
   config.google_auth = Rails.application.secrets.google_auth
   config.google_sheet_id = Rails.application.secrets.google_drive[:sheet_id]
