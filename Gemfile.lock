@@ -60,6 +60,8 @@ GEM
       capistrano (~> 3.1)
       sshkit (~> 1.2)
     capistrano-harrow (0.5.3)
+    capistrano-passenger (0.2.0)
+      capistrano (~> 3.0)
     capistrano-rails (1.2.0)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
@@ -276,6 +278,7 @@ DEPENDENCIES
   bcrypt
   byebug
   capistrano (~> 3.6)
+  capistrano-passenger
   capistrano-rails (~> 1.2)
   capistrano-rbenv
   coffee-rails (~> 4.1.0)
@@ -302,4 +305,4 @@ DEPENDENCIES
   web-console (~> 2.0)
 
 BUNDLED WITH
-   1.13.6
+   1.14.3
