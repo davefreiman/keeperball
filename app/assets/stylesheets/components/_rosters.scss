@@ -1,0 +1,39 @@
+.rosters-index-content {}
+
+  .rosters-table {}
+
+    .rosters-table__roster_unit {
+      margin: 10px 15px;
+      background: $lightishbluegray;
+    }
+
+    .rosters-table__roster_unit--even {
+      background: $lightishbluegray;
+    }
+
+    .rosters-table__row {
+      width: 100%;
+      border-bottom: 1px solid $lightBlue;
+    }
+
+    .rosters-table__row-cell {
+      display: inline-block;
+      padding: 5px;
+      width: 20%;
+
+      &.rosters-table__row-cell--players {
+        width: 50%;
+      }
+
+      &.rosters-table__row-cell--header {
+        font-weight: bold;
+        font-size: 18px;
+      }
+
+      &.rosters-table__row-cell--roster_name {
+        width: 100%;
+        font-weight: bold;
+        padding: 25px;
+        font-size: 20px;
+      }
+    }

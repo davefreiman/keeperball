@@ -1,5 +1,6 @@
 class RostersController < ApplicationController
   def index
+    @rosters = Keeperball::Roster.all
   end
 
   def show

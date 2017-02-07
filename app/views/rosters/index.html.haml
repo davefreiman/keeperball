@@ -1,0 +1,29 @@
+- title 'All Rosters'
+
+.main-container
+  .rosters-index-content
+    .rosters-table
+      - @rosters.each_with_index do |roster, i|
+        .rosters-table__roster_unit{ class: ('rosters-table__trade_unit--even' if i % 2 == 0) }
+          .rosters-table__row
+            .rosters-table__row-cell.rosters-table__row-cell--roster_name
+              %span= roster.name
+          .rosters-table__row
+            .rosters-table__row-cell.rosters-table__row-cell--header
+              %span Player
+            .rosters-table__row-cell.rosters-table__row-cell--header
+              %span Salary
+            .rosters-table__row-cell.rosters-table__row-cell--header
+              %span Signed Through
+            .rosters-table__row-cell.rosters-table__row-cell--header
+              %span Contract Type
+          - roster.players.each do |player|
+            .rosters-table__row
+              .rosters-table__row-cell.rosters-table__row-cell--player
+                %span= player.name
+              .rosters-table__row-cell.rosters-table__row-cell--player
+                %span= player.salary
+              .rosters-table__row-cell.rosters-table__row-cell--player
+                %span= player.expiry
+              .rosters-table__row-cell.rosters-table__row-cell--player
+                %span= player.contract_type.capitalize
