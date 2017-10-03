@@ -1,0 +1,86 @@
+{
+  "eric masters": {
+    "x_start": "2",
+    "y_start": "12",
+    "y_end": "25",
+    "team_name": "Marsters",
+    "team_key": "375.l.47486.t.8"
+  },
+  "ben walters": {
+    "x_start": "8",
+    "y_start": "12",
+    "y_end": "25",
+    "team_name": "Hoosiers",
+    "team_key": "375.l.47486.t.7"
+  },
+  "harry sversky": {
+    "x_start": "2",
+    "y_start": "33",
+    "y_end": "46",
+    "team_name": "Thirst4TheSversk",
+    "team_key": "375.l.47486.t.11"
+  },
+  "andrew bronfman": {
+    "x_start": "8",
+    "y_start": "33",
+    "y_end": "46",
+    "team_name": "Sandy Randy",
+    "team_key": "375.l.47486.t.9"
+  },
+  "casey lewis": {
+    "x_start": "2",
+    "y_start": "54",
+    "y_end": "67",
+    "team_name": "Adonal and a Dream",
+    "team_key": "375.l.47486.t.3"
+  },
+  "jon hertz": {
+    "x_start": "8",
+    "y_start": "54",
+    "y_end": "67",
+    "team_name": "Youngins",
+    "team_key": "375.l.47486.t.12"
+  },
+  "rory diamond": {
+    "x_start": "2",
+    "y_start": "75",
+    "y_end": "88",
+    "team_name": "DeRory",
+    "team_key": "375.l.47486.t.6"
+  },
+  "dmitri bourchtein": {
+    "x_start": "8",
+    "y_start": "75",
+    "y_end": "88",
+    "team_name": "All Beauties",
+    "team_key": "375.l.47486.t.4"
+  },
+  "daniel goldlist": {
+    "x_start": "2",
+    "y_start": "96",
+    "y_end": "109",
+    "team_name": "Daniel v Adam",
+    "team_key": "375.l.47486.t.5"
+  },
+  "zach roher": {
+    "x_start": "8",
+    "y_start": "96",
+    "y_end": "109",
+    "team_name": "2CHAINZ",
+    "team_key": "375.l.47486.t.2"
+  },
+  "edan posner": {
+    "x_start": "2",
+    "y_start": "118",
+    "y_end": "131",
+    "team_name": "The Heady Toppers",
+    "team_key": "375.l.47486.t.10"
+  },
+  "david freiman": {
+    "x_start": "8",
+    "y_start": "118",
+    "y_end": "131",
+    "team_name": "Shisland",
+    "team_key": "375.l.47486.t.1"
+  }
+}

@@ -37,6 +37,7 @@ module Keeperball
         end
       end
 
+      # 2017 dave to 2015 dave - fire yourself
       def season_key
         "#{(current_season - 1).to_s}-#{current_season}"
       end
