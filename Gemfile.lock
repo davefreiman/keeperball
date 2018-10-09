@@ -280,7 +280,7 @@ PLATFORMS
 DEPENDENCIES
   bcrypt
   byebug
-  capistrano (~> 3.6)
+  capistrano (~> 3.10)
   capistrano-passenger
   capistrano-rails (~> 1.2)
   capistrano-rbenv
