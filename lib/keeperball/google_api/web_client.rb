@@ -58,7 +58,9 @@ module Keeperball
       attr_reader :client_id, :client_secret, :request, :user
 
       def redirect_uri
-        'http://localhost:3000/google/oauth/callback'
+        Rails.application.routes.url_helpers.google_oauth_callback_url(
+          host: Rails.application.config.domain
+        )
       end
 
       def formatted_client_id
