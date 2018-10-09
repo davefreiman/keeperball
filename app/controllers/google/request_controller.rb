@@ -31,7 +31,7 @@ module Google
 
     def google_api_session
       @session ||=
-        Keeperball::GoogleApi::WebClient.new.current_session(current_user)
+        Keeperball::GoogleApi::WebClient.new(request, current_user).current_session(current_user)
     end
   end
 end

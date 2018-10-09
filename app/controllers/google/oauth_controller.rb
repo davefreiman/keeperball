@@ -20,7 +20,7 @@ module Google
     private
 
     def client
-      @client ||= Keeperball::GoogleApi::WebClient.new
+      @client ||= Keeperball::GoogleApi::WebClient.new(request, current_user)
     end
   end
 end
