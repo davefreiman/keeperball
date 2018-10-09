@@ -1,6 +1,6 @@
 set :stage, :production
 
-server 'keeperball.df',
+server 'keeperball2.df',
   user: 'ubuntu',
   roles: %w{web app},
   ssh_options: {
