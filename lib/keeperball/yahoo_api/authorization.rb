@@ -49,15 +49,15 @@ module Keeperball
       private
 
       def request_url
-        'https://api.login.yahoo.com/oauth/v2/get_request_token'
+        'https://api.login.yahoo.com/oauth2/get_request_token'
       end
 
       def access_token_url
-        'https://api.login.yahoo.com/oauth/v2/get_token'
+        'https://api.login.yahoo.com/oauth2/get_token'
       end
 
       def authorize_token_url
-        'https://api.login.yahoo.com/oauth/v2/request_auth'
+        'https://api.login.yahoo.com/oauth2/request_auth'
       end
 
       def user_tokens
