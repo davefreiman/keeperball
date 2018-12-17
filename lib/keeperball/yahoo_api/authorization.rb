@@ -22,13 +22,9 @@ module Keeperball
             .get_token(oauth_params[:code], redirect_uri: oauth_callback_url)
       end
 
-      def refresh_token
+      def refresh_token(access_token)
         return unless current_user.has_expired_access_token?
-        consumer.auth_code.client.get_token(
-          refresh_token: current_user.yahoo_access_refresh_token,
-          grant_type: 'refresh_token',
-          redirect_uri: oauth_callback_url
-        )
+        access_token.refresh!
       end
 
       def oauth_callback_url

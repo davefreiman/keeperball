@@ -40,7 +40,7 @@ module Yahoo
 
     def refresh_token
       return unless current_user.has_expired_access_token?
-      access = auth.refresh_token
+      access = auth.refresh_token(access_token)
       return unless access.present?
       current_user.update_attributes(
         yahoo_access_token: access.token,
