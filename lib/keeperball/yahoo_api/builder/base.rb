@@ -9,7 +9,7 @@ module Keeperball
         private
 
         def api_url
-          'http://fantasysports.yahooapis.com/fantasy/v2/'
+          'https://fantasysports.yahooapis.com/fantasy/v2/'
         end
 
         def league_id

@@ -3,11 +3,7 @@ class OauthController < ApplicationController
 
   def authorize
     auth = Keeperball::YahooApi::Authorization.new(oauth_params, current_user)
-    current_user.update_attributes(
-      yahoo_oauth_token: auth.request_token.token,
-      yahoo_oauth_token_secret: auth.request_token.secret
-    )
-    redirect_to auth.request_token.authorize_url
+    redirect_to auth.authorize_url
   end
 
   def callback
@@ -17,9 +13,9 @@ class OauthController < ApplicationController
       access = auth.access_token
       current_user.update_attributes(
         yahoo_access_token: access.token,
-        yahoo_access_token_secret: access.secret,
-        yahoo_access_token_expiry: Time.now + 3600,
-        yahoo_oauth_session_identifier: access.params[:oauth_session_handle]
+        yahoo_access_token_expiry: Time.now + access.expires_in.seconds,
+        yahoo_oauth_session_identifier: access.params[:oauth_session_handle],
+        yahoo_access_refresh_token: access.refresh_token
       )
       redirect_to root_path, notice: 'authorized'
     rescue Exception => e
@@ -31,8 +27,8 @@ class OauthController < ApplicationController
   private
 
   def oauth_params
-    params.select do |k, v|
-      k.to_s.include?('oauth')
+    params.select do |k, _v|
+      k.to_s.include?('oauth') || k == 'code'
     end.compact
   end
 end

@@ -30,16 +30,29 @@ module Yahoo
     end
 
     def access_token
-      auth = Keeperball::YahooApi::Authorization.new({}, current_user)
-      OAuth::AccessToken.new(
+      OAuth2::AccessToken.from_hash(
         auth.consumer,
-        current_user.yahoo_access_token,
-        current_user.yahoo_access_token_secret
+        access_token: current_user.yahoo_access_token,
+        refresh_token: current_user.yahoo_access_refresh_token,
+        expires_at: current_user.yahoo_access_token_expiry
       )
     end
 
     def refresh_token
-      redirect_to oauth_authorize_path if current_user.has_expired_access_token?
+      return unless current_user.has_expired_access_token?
+      access = auth.refresh_token
+      return unless access.present?
+      current_user.update_attributes(
+        yahoo_access_token: access.token,
+        yahoo_access_token_expiry: Time.now + access.expires_in.seconds,
+        yahoo_oauth_session_identifier: access.params[:oauth_session_handle],
+        yahoo_access_refresh_token: access.refresh_token
+      )
+    end
+
+    def auth
+      @auth =
+        Keeperball::YahooApi::Authorization.new({}, current_user)
     end
   end
 end

@@ -11,6 +11,7 @@ class User
   field :yahoo_access_token_secret, type: String
   field :yahoo_access_token_expiry, type: Time
   field :yahoo_oauth_session_identifier, type: String
+  field :yahoo_access_refresh_token, type: String
   field :google_access_token, type: String
   field :google_access_token_expiry, type: Time
 
@@ -44,7 +45,8 @@ class User
       :yahoo_access_token,
       :yahoo_access_token_secret,
       :yahoo_oauth_session_identifier,
-      :google_access_token
+      :google_access_token,
+      :yahoo_access_refresh_token
     ]
   end
 

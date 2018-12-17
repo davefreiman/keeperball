@@ -10,21 +10,25 @@ module Keeperball
         @current_user = user
       end
 
-      def request_token
-        @request_token ||=
-          consumer.get_request_token(:oauth_callback => oauth_callback_url)
+      def authorize_url
+        @authorize_url ||=
+          consumer.auth_code.authorize_url(redirect_uri: oauth_callback_url)
       end
 
       def access_token
-        request_token = OAuth::RequestToken.from_hash(consumer, user_tokens)
-        request_token.get_access_token
+        @access_token ||=
+          consumer
+            .auth_code
+            .get_token(oauth_params[:code], redirect_uri: oauth_callback_url)
       end
 
       def refresh_token
         return unless current_user.has_expired_access_token?
-        request_token =
-          OAuth::RequestToken.from_hash(consumer, user_access_tokens)
-        request_token.get_access_token
+        consumer.auth_code.client.get_token(
+          refresh_token: current_user.yahoo_access_refresh_token,
+          grant_type: 'refresh_token',
+          redirect_uri: oauth_callback_url
+        )
       end
 
       def oauth_callback_url
@@ -35,21 +39,21 @@ module Keeperball
 
       def consumer
         @consumer ||=
-          OAuth::Consumer.new(client_id, client_secret, consumer_params)
+          OAuth2::Client.new(client_id, client_secret, consumer_params)
       end
 
       def consumer_params
         {
-          :access_token_url  => access_token_url,
-          :authorize_url     => authorize_token_url,
-          :request_token_url => request_url
+          token_url: access_token_url,
+          authorize_url: authorize_token_url,
+          request_token_url: request_url
         }.merge(oauth_params)
       end
 
       private
 
       def request_url
-        'https://api.login.yahoo.com/oauth2/get_request_token'
+        'https://api.login.yahoo.com/oauth2/request_auth'
       end
 
       def access_token_url

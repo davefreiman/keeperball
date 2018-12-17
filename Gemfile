@@ -24,7 +24,8 @@ gem 'jbuilder', '~> 2.0'
 gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'curb'
-gem 'oauth'
+# yahoo releases oauth2 and removes oauth 1
+gem 'oauth2'
 gem 'mongoid', '~> 5.1.0'
 gem 'bcrypt'
 gem 'rspec-rails'
