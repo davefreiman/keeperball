@@ -6,6 +6,13 @@ class TradesController < ApplicationController
       order('completed_at ASC')
   end
 
+  def pickups
+    @trades = Keeperball::Transaction.
+      from_season(season).
+      where(move_type: 'add').
+      order('completed_at ASC')
+  end
+
   def show
   end
 

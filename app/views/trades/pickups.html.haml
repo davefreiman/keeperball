@@ -12,7 +12,12 @@
               %span Date
             .trades-table__row-cell
               %span= trade.formatted_completed_date
-          - trade.details_for_display.each do |dest_team, players|
+          .trades-table__row
+            .trades-table__row-cell.trades-table__row-cell--legend
+              %span Source
+            .trades-table__row-cell
+              %span= trade.pickup_type
+          - trade.pickup_details_for_display.each do |dest_team, players|
             .trades-table__row
               .trades-table__row-cell.trades-table__row-cell--legend
                 %span To

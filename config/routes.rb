@@ -13,7 +13,11 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#destroy', as: :logout
   resources :sessions, :only => [:create]
 
-  resources :trades
+  resources :trades do
+    collection do
+      get 'pickups' => 'trades#pickups', as: :pickups
+    end
+  end
   resources :banters
   get 'rosters/trade_form' => 'rosters#trade_form', as: :trades_roster
   resources :rosters, :only => [:index, :show]

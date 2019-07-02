@@ -5,7 +5,7 @@
   %ul.subheading-menu__list
     %li.subheading-menu__list-item{ class: ('subheading-menu__list-item--active' if current_page?(controller: 'trades', action: 'index')) }
       = link_to 'View all Trades', trades_path
+    %li.subheading-menu__list-item
+      = link_to 'View all Pickups', pickups_trades_path
     %li.subheading-menu__list-item{ class: ('subheading-menu__list-item--active' if current_page?(controller: 'trades', action: 'new')) }
       = link_to 'Propose a Trade', new_trade_path
-    %li.subheading-menu__list-item
-      = link_to 'Current Offers (TODO)', new_trade_path
