@@ -48,6 +48,7 @@ module Yahoo
         yahoo_oauth_session_identifier: access.params[:oauth_session_handle],
         yahoo_access_refresh_token: access.refresh_token
       )
+      @current_user = current_user.reload
     end
 
     def auth

@@ -32,17 +32,7 @@ module Keeperball
       end
 
       def refresh_token(token)
-        client = Google::APIClient.new
-        auth = client.authorization
-        auth.client_id = client_id
-        auth.client_secret = client_secret
-        auth.scope =
-          'https://www.googleapis.com/auth/drive ' +
-          'https://spreadsheets.google.com/feeds/'
-        auth.redirect_uri = redirect_uri
-        auth.refresh_token = token
-        auth.refresh!
-        GoogleDrive.login_with_oauth(auth.access_token)
+        # @todo Implement Refresh logic
       end
 
       def current_session(user)

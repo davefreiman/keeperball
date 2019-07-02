@@ -13,6 +13,7 @@ class User
   field :yahoo_oauth_session_identifier, type: String
   field :yahoo_access_refresh_token, type: String
   field :google_access_token, type: String
+  field :google_refresh_token, type: String
   field :google_access_token_expiry, type: Time
 
   has_one :roster, class_name: 'Keeperball::Roster'

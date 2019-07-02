@@ -1,10 +1,32 @@
 <% title 'Home page' %>
-<h1>Keeperball</h1>
 
 <% if current_user.blank? %>
+  <div>
     <%= link_to 'login', login_path %>
+  </div>
 <% elsif current_user.yahoo_access_token.present? %>
-    <%= link_to 'refresh transactions', yahoo_refresh_transactions_path %>
+  <div class="yahoo-action-list">
+    <h3>Yahoo League Actions:</h3>
+    <div class="action-set">
+      <%= link_to 'Import League Players', yahoo_import_players_path %>
+    </div>
+    <div class="action-set">
+      <%= link_to 'Import League Teams', yahoo_import_rosters_path %>
+    </div>
+    <div class="action-set">
+      <%= link_to 'Refresh League Transactions', yahoo_refresh_transactions_path %>
+    </div>
+
+    <h3>Google Sheet Actions:</h3>
+    <div class="action-set">
+      <%= link_to 'Read Rosters', google_read_spreadsheet_path %>
+    </div>
+    <div class="action-set">
+      <%= link_to 'Write Rosters to Spreadsheet', google_write_transaction_path %>
+    </div>
+  </div>
 <% else %>
-    <%= link_to 'authorize', oauth_authorize_path %>
+  <div>
+    <%= link_to 'Authorize Yahoo!', oauth_authorize_path %>
+  </div>
 <% end %>
