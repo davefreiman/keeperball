@@ -1,6 +1,6 @@
 class RostersController < ApplicationController
   def index
-    @rosters = Keeperball::Roster.all
+    @rosters = Keeperball::Roster.from_season(season).all
   end
 
   def show
@@ -22,6 +22,10 @@ class RostersController < ApplicationController
   end
 
   private
+
+  def season
+    (params[:season] || current_year).to_i
+  end
 
   def roster_params
     params.permit(:roster, :team_type)

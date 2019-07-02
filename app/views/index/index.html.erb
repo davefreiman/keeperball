@@ -1,11 +1,10 @@
 <% title 'Home page' %>
-
+<div class="yahoo-action-list">
 <% if current_user.blank? %>
-  <div>
+  <div class="action-set">
     <%= link_to 'login', login_path %>
   </div>
 <% elsif current_user.yahoo_access_token.present? %>
-  <div class="yahoo-action-list">
     <h3>Yahoo League Actions:</h3>
     <div class="action-set">
       <%= link_to 'Import League Players', yahoo_import_players_path %>
@@ -24,9 +23,9 @@
     <div class="action-set">
       <%= link_to 'Write Rosters to Spreadsheet', google_write_transaction_path %>
     </div>
-  </div>
 <% else %>
-  <div>
+  <div class="action-set">
     <%= link_to 'Authorize Yahoo!', oauth_authorize_path %>
   </div>
 <% end %>
+</div>
