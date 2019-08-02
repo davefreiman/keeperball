@@ -4,6 +4,7 @@ class User
   include ActiveModel::SecurePassword
 
   field :email, type: String
+  field :admin, type: Boolean, default: false
   field :password_digest, type: String
   field :yahoo_oauth_token, type: String
   field :yahoo_oauth_token_secret, type: String

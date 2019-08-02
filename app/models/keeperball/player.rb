@@ -11,7 +11,10 @@ module Keeperball
     field :expiry, type: Integer, default: 0
     field :contract_type, type: String, default: 'none'
 
-    belongs_to :roster, inverse_of: :players, class_name: 'Keeperball::Roster'
+    belongs_to :roster,
+               inverse_of: :players,
+               class_name: 'Keeperball::Roster',
+               optional: true
 
     validates :player_key, presence: true, uniqueness: true
     validates :name, presence: true
