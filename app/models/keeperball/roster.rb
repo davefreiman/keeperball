@@ -9,7 +9,7 @@ module Keeperball
     field :season, type: Integer
     field :cap_map, type: Hash, default: {}
 
-    belongs_to :user, inverse_of: :rosters
+    belongs_to :user, inverse_of: :rosters, optional: true
     has_many :players, class_name: 'Keeperball::Player'
 
     validates :team_key, presence: true, uniqueness: true

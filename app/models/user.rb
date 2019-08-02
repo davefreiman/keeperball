@@ -4,6 +4,7 @@ class User
   include ActiveModel::SecurePassword
 
   field :email, type: String
+  field :admin, type: Boolean, default: false
   field :password_digest, type: String
   field :yahoo_oauth_token, type: String
   field :yahoo_oauth_token_secret, type: String
@@ -69,7 +70,7 @@ class User
 
   def crypt
     @crypt ||= ActiveSupport::MessageEncryptor.new(
-      Rails.application.secrets.secret_key_base
+      Rails.application.secrets.secret_key_base[0..31]
     )
   end
 end

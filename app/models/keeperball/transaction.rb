@@ -20,6 +20,8 @@ module Keeperball
     validate :move_type_valid
     validate :details_present
 
+    after_save :notify_managers
+
     cattr_accessor :allowed_move_types
     self.allowed_move_types = %w(add trade)
 
@@ -37,6 +39,10 @@ module Keeperball
     def details_present
       return true unless details.empty?
       errors[:details].push('can not be empty')
+    end
+
+    def notify_managers
+
     end
   end
 end

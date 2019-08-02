@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 4.2.11.1'
+gem 'rails', '~> 6.0.0.rc2'
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use SCSS for stylesheets
@@ -10,7 +10,7 @@ gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
-gem 'coffee-rails', '~> 4.1.0'
+gem 'coffee-rails'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
 
@@ -26,7 +26,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'curb'
 # yahoo releases oauth2 and removes oauth 1
 gem 'oauth2'
-gem 'mongoid', '~> 5.1.0'
+gem 'mongoid', '~> 7.0.x'
 gem 'bcrypt'
 gem 'rspec-rails'
 gem 'nokogiri'
@@ -39,6 +39,7 @@ gem 'lodash-rails'
 gem 'therubyracer'
 
 gem 'byebug'
+gem 'pry'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
@@ -55,7 +56,7 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 4.0'
   gem 'capistrano', '~> 3.10'
   gem 'capistrano-rails', '~> 1.2'
   gem 'capistrano-rbenv'

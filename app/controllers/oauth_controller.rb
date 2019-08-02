@@ -1,5 +1,5 @@
 class OauthController < ApplicationController
-  before_filter :require_login
+  before_action :require_login
 
   def authorize
     auth = Keeperball::YahooApi::Authorization.new(oauth_params, current_user)
@@ -27,8 +27,8 @@ class OauthController < ApplicationController
   private
 
   def oauth_params
-    params.select do |k, _v|
+    params.permit('code').select do |k, _v|
       k.to_s.include?('oauth') || k == 'code'
-    end.compact
+    end
   end
 end

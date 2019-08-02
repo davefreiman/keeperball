@@ -1,7 +1,7 @@
 module Google
   class RequestController < ApplicationController
-    before_filter :require_login
-    before_filter :check_api_session
+    before_action :require_login
+    before_action :check_api_session
 
     def read
       run_import('read')
