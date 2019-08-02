@@ -7,7 +7,6 @@ class OauthController < ApplicationController
   end
 
   def callback
-    # binding.pry
     auth = Keeperball::YahooApi::Authorization.new(oauth_params, current_user)
 
     begin
