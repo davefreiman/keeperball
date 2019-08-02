@@ -1,8 +1,8 @@
 module Yahoo
   class RequestController < ApplicationController
-    before_filter :require_login
-    before_filter :refresh_token
-    before_filter :access_token
+    before_action :require_login
+    before_action :refresh_token
+    before_action :access_token
 
     def transactions
       run_import('transactions')

@@ -69,7 +69,7 @@ class User
 
   def crypt
     @crypt ||= ActiveSupport::MessageEncryptor.new(
-      Rails.application.secrets.secret_key_base
+      Rails.application.secrets.secret_key_base[0..31]
     )
   end
 end
