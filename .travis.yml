@@ -2,10 +2,10 @@ language: ruby
 env:
   RAILS_ENV=test
 script:
-  - RAILS_ENV=test bundle exec rake --trace
+  - RAILS_ENV=test bundle exec rspec --trace
 services:
   - mongodb
 before_script:
   - sleep 15
-  - mongo mydb_test --eval 'db.addUser("travis", "test");'
+  - mongo mydb_test --eval 'db.createUser("travis", "test");'
 
