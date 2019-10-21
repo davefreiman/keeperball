@@ -23,5 +23,5 @@ Keeperball::Application.configure do
     2020 => '395'
   }
 
-  config.current_year = 2019
+  config.current_year = 2020
 end
