@@ -13,7 +13,7 @@ Keeperball::Application.configure do
     2018 => '375.l.47486',
     2019 => '385.l.107235',
     2020 => '395.l.105712',
-    2021 => '405.l.49434',
+    2021 => '402.l.49434',
   }
 
   config.yahoo_game_ids = {
@@ -22,7 +22,7 @@ Keeperball::Application.configure do
     2018 => '375',
     2019 => '385',
     2020 => '395',
-    2021 => '405',
+    2021 => '402',
   }
 
   config.current_year = 2021
