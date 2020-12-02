@@ -1,4 +1,7 @@
 class TradesController < ApplicationController
+  before_action :find_trade, only: %i(accept decline show update)
+  before_action :ensure_pending, only: %i(accept decline)
+
   def index
     @trades = Keeperball::Transaction.
       from_season(season).
@@ -46,9 +49,27 @@ class TradesController < ApplicationController
   end
 
   def decline
+    if @trade.delete
+      redirect_to trades_path,
+                  notice: 'Trade Declined!'
+    else
+      redirect_to trade_path(@trade),
+                  alert: ['Trade failed to save:',
+                          @trade.errors.first.first.to_s,
+                          @trade.errors.first.second].join(' ')
+    end
   end
 
   def accept
+    if @trade.update(pending: false)
+      redirect_to trades_path,
+                  notice: 'Trade Accepted! You just got fleeced you idiot'
+    else
+      redirect_to trade_path(@trade),
+                  alert: ['Trade failed to save:',
+                          @trade.errors.first.first.to_s,
+                          @trade.errors.first.second].join(' ')
+    end
   end
 
   private
@@ -66,5 +87,16 @@ class TradesController < ApplicationController
 
   def season
     (params[:season] || current_year).to_i
+  end
+
+  def find_trade
+    @trade ||= Keeperball::Transaction.find(params[:id])
+  end
+
+  def ensure_pending
+    unless @trade.pending?
+      redirect_to trade_path(@trade),
+                  alert: 'Cannot Accept or Decline a non-pending trade'
+    end
   end
 end

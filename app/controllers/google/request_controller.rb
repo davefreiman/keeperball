@@ -1,6 +1,6 @@
 module Google
   class RequestController < ApplicationController
-    before_action :require_login
+    before_action :require_admin
     before_action :check_api_session
 
     def read

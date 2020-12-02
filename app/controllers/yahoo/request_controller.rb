@@ -1,6 +1,6 @@
 module Yahoo
   class RequestController < ApplicationController
-    before_action :require_login
+    before_action :require_admin
     before_action :refresh_token
     before_action :access_token
 

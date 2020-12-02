@@ -1,6 +1,6 @@
 module Google
   class OauthController < ApplicationController
-    before_action :require_login
+    before_action :require_admin
 
     def authorize
       url = client.authorize_url.to_s

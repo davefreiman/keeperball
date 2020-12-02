@@ -19,6 +19,11 @@ class ApplicationController < ActionController::Base
     redirect_to root_path, notice: 'Login Required' unless current_user
   end
 
+  def require_admin
+    return unless current_user&.admin?
+    redirect_to root_path, notice: 'Forbidden'
+  end
+
   private
 
   def current_year_key

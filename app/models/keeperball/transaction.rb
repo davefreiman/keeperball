@@ -42,7 +42,6 @@ module Keeperball
     end
 
     def notify_managers
-
     end
   end
 end
