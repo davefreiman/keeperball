@@ -4,7 +4,7 @@ module Keeperball
 
     def initialize(trade, params)
       @trade = trade
-      @params = params.with_indifferent_access
+      @params = params
     end
 
     def process
