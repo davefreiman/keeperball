@@ -29,7 +29,7 @@ module Keeperball
           if type == 'add'
             roster = Keeperball::Roster.find_by_key(detail.destination)
             player.roster_id = roster.id
-            if detail.source == 'freeagents' && reset_salary?(player)
+            if needs_a_new_contract?
               player.salary = 12
               player.expiry = current_season + 1
               player.contract_type = 'entry'
@@ -99,6 +99,11 @@ module Keeperball
 
       def reset_salary?(player)
         !player.salary.present? || player.salary <= 12
+      end
+
+      def needs_a_new_contract?(detail, player)
+        (detail.source == 'freeagents' && reset_salary?(player)) ||
+          (detail.source == 'waivers' && player.contract_type == "none")
       end
     end
   end
