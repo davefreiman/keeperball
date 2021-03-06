@@ -21,7 +21,7 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
-gem 'sdoc', '~> 0.4.0', group: :doc
+gem 'sdoc', group: :doc
 
 gem 'curb'
 # yahoo releases oauth2 and removes oauth 1
@@ -29,7 +29,7 @@ gem 'oauth2'
 gem 'mongoid', '~> 7.0.x'
 gem 'bcrypt'
 gem 'rspec-rails'
-gem 'nokogiri'
+gem "nokogiri", ">= 1.11.0"
 gem 'tailor'
 gem 'googleauth'
 gem 'google_drive'
