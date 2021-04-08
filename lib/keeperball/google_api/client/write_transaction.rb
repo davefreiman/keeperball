@@ -29,7 +29,7 @@ module Keeperball
           if type == 'add'
             roster = Keeperball::Roster.find_by_key(detail.destination)
             player.roster_id = roster.id
-            if needs_a_new_contract?
+            if needs_a_new_contract?(detail, player)
               player.salary = 12
               player.expiry = current_season + 1
               player.contract_type = 'entry'
