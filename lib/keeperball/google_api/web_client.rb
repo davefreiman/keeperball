@@ -49,7 +49,8 @@ module Keeperball
 
       def redirect_uri
         Rails.application.routes.url_helpers.google_oauth_callback_url(
-          host: Rails.application.config.domain
+          host: Rails.application.config.domain,
+          protocol: Rails.env == 'production' ? 'https' : 'http',
         )
       end
 
