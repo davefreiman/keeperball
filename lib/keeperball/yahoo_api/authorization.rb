@@ -29,7 +29,8 @@ module Keeperball
 
       def oauth_callback_url
         Rails.application.routes.url_helpers.oauth_callback_url(
-          host: Rails.application.config.domain
+          host: Rails.application.config.domain,
+          protocol: Rails.env == 'production' ? 'https' : 'http'
         )
       end
 
